@@ -69,8 +69,15 @@
         },
         async asyncData({ $axios }) {                        
             const useInstitucion = useInstitucionStore()                        
-            const carreras  = await $axios.$get('api/upeacarrera')                        
-            useInstitucion.asignarCarreras(carreras)                          
+            if(useInstitucionStore().carreras == null){
+                let carreras  = await $axios.$get('api/upeacarrera')                                        
+                carreras.forEach(car => {
+                    let links = []
+                    links.push($axios.$get('/api/linksIntExtAll/'+car.carrera_id))
+                    car.links = links
+                });
+                useInstitucion.asignarCarreras(carreras)                                          
+            }
         },
         data() {
             return {

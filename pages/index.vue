@@ -57,6 +57,9 @@
                 const publicacionesCarreras = [];                       
                 const institucion = await $axios.$get('/api/InstitucionUPEA/'+process.env.APP_ID_INSTITUCION)
                 const carreras  = await $axios.$get('api/upeacarrera')                                                 
+                carreras.forEach(async car => {
+                    car.links.push(await $axios.$get('/api/linksIntExtAll/'+car.carrera_id)) 
+                });                
                 const menuAreasyCarreras = await $axios.$get('/api/area')
                 const publicacionesUniversidad = await $axios.$get('/api/publicacionesAll/'+ process.env.APP_ID_INSTITUCION)                
                 const eventosUniversidad = await $axios.$get('/api/eventoAll/' + process.env.APP_ID_INSTITUCION)

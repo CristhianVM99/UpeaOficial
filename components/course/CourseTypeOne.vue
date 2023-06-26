@@ -79,7 +79,7 @@
             };
         },        
         created(){
-            console.log(this.coleccion)
+            console.log(typeof(this.coleccion.links))
             
         }
     }
