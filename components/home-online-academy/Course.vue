@@ -48,8 +48,8 @@
         data () {
             return {
                 courseData,
-                iniciales:'',
-                title: 'Comunicados Universitarios',
+                iniciales: useInstitucionStore().institucion.institucion_iniciales,
+                title: useInstitucionStore().titlePublicacionesCarreras,
                 carreras: useInstitucionStore().carreras,
                 publicacionesCarreras: [],
             }
@@ -76,7 +76,6 @@
                 const useInstitucion = useInstitucionStore()
                 this.getPublicacionesCarreraAll()   
                 useInstitucion.asignarPublicacionesCarreras(this.publicacionesCarreras)                             
-                this.iniciales =  useInstitucion.institucion.institucion_iniciales                                
             }
         },
         created() {

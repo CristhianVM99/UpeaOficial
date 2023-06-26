@@ -2,7 +2,7 @@
     <div class="edu-blog blog-style-4">
         <div class="inner">
             <div class="thumbnail">            
-                <img v-if="tipo == 'publicaciones' || tipo == 'All'" :src="url_api + '/Publicaciones/' + coleccion.publicaciones_imagen" :alt="coleccion.publicaciones_titulo">
+                <img v-if="tipo == 'publicaciones' || tipo == 'All' || tipo == 'servicios'" :src="url_api + '/Publicaciones/' + coleccion.publicaciones_imagen" :alt="coleccion.publicaciones_titulo">
                 <img v-if="tipo == 'eventos'" :src="url_api + '/Eventos/' + coleccion.evento_imagen" :alt="coleccion.evento_titulo">
                 <iframe  
                     v-if="tipo == 'videos'"                      
@@ -10,30 +10,30 @@
                     frameborder="0"                        
                     style="border-radius: 5px;width: 100%; height: 420px;"
                 />                
-                <vue-pdf v-if="tipo == 'gacetas'" :src="url_api + '/Gaceta/' + coleccion.gaceta_documento" :page="currentPage" :options="pdfOptions" />                
+                <!--<vue-pdf v-if="tipo == 'gacetas'" :src="url_api + '/Gaceta/' + coleccion.gaceta_documento" :page="currentPage" :options="pdfOptions" />-->
             </div>
             <div class="content">
                 <div class="category-wrap">
-                    <n-link v-if="tipo == 'publicaciones' || tipo == 'All'" to="/blog/blog-masonry" class="blog-category">{{ coleccion.publicaciones_tipo }}</n-link>
+                    <n-link v-if="tipo == 'publicaciones' || tipo == 'All' || tipo == 'servicios'" to="/blog/blog-masonry" class="blog-category">{{ coleccion.publicaciones_tipo }}</n-link>
                     <n-link v-if="tipo == 'eventos'" to="/blog/blog-masonry" class="blog-category">{{ coleccion.evento_tipo }}</n-link>
                 </div>
                 <h3 class="title">
-                    <n-link v-if="tipo == 'publicaciones' || tipo == 'All'" to="/blog/blog-details">{{ coleccion.publicaciones_titulo }}</n-link>
+                    <n-link v-if="tipo == 'publicaciones' || tipo == 'All' || tipo == 'servicios'" to="/blog/blog-details">{{ coleccion.publicaciones_titulo }}</n-link>
                     <n-link v-if="tipo == 'eventos'" to="/blog/blog-details">{{ coleccion.evento_titulo }}</n-link>
-                    <n-link v-if="tipo == 'gacetas'" to="/blog/blog-details">{{ coleccion.gaceta_titulo }}</n-link>
+                    <n-link v-if="tipo == 'gacetas' || tipo == 'auditorias'" to="/blog/blog-details">{{ coleccion.gaceta_titulo }}</n-link>
                     <n-link v-if="tipo == 'videos'" to="/blog/blog-details">{{ coleccion.video_titulo }}</n-link>
                 </h3>
                 <ul class="blog-meta">
-                    <li v-if="tipo == 'publicaciones' || tipo == 'All'"><i class="icon-27"></i>{{ coleccion.publicaciones_fecha }}</li>
+                    <li v-if="tipo == 'publicaciones' || tipo == 'All' || tipo == 'servicios'"><i class="icon-27"></i>{{ coleccion.publicaciones_fecha }}</li>
                     <li v-if="tipo == 'eventos'"><i class="icon-27"></i>{{ coleccion.evento_fecha }}</li>
-                    <li v-if="tipo == 'gacetas'"><i class="icon-27"></i>{{ coleccion.gaceta_fecha }}</li>
-                    <li v-if="tipo == 'publicaciones' || tipo == 'All'"><i class="icon-28"></i>{{ coleccion.publicaciones_autor }} / {{ coleccion.publicaciones_documento }}</li>
+                    <li v-if="tipo == 'gacetas' || tipo == 'auditorias'"><i class="icon-27"></i>{{ coleccion.gaceta_fecha }}</li>
+                    <li v-if="tipo == 'publicaciones' || tipo == 'All' || tipo == 'servicios'"><i class="icon-28"></i>{{ coleccion.publicaciones_autor }} / {{ coleccion.publicaciones_documento }}</li>
                     <li v-if="tipo == 'evento'"><i class="icon-28"></i>{{ coleccion.evento_lugar }} / {{ coleccion.evento_hora }}</li>
                 </ul>
-                <p v-if="tipo == 'publicaciones' || tipo == 'All'" v-html="coleccion.publicaciones_descripcion"></p>
+                <p v-if="tipo == 'publicaciones' || tipo == 'All' || tipo == 'servicios'" v-html="coleccion.publicaciones_descripcion"></p>
                 <p v-if="tipo == 'eventos'" v-html="coleccion.evento_descripcion"></p>
                 <p v-if="tipo == 'videos'" v-html="coleccion.video_breve_descripcion"></p>
-                <div v-if="tipo == 'gacetas'" class="read-more-btn">
+                <div v-if="tipo == 'gacetas' || tipo == 'auditorias'" class="read-more-btn">
                     <a :href="url_api + '/Gaceta/' + coleccion.gaceta_documento" class="edu-btn btn-border btn-medium" target="_blank">
                         Descargar PDF <i class="icon-4"></i>
                     </a>
@@ -72,7 +72,7 @@
 </template>
 
 <script>
-    import VuePdf from 'vue-pdf';
+    //import VuePdf from 'vue-pdf';
     import { format } from 'date-fns';
     export default {
         props: ['coleccion','tipo'],
@@ -107,7 +107,7 @@
             }
         },
         components: {
-            VuePdf
+            //VuePdf
         },
         computed: {
             /*fechaFormateada(fecha_data) {

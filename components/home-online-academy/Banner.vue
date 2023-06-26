@@ -15,13 +15,13 @@
         </div>
         <div class="banner-gallery">
             <div class="thumbnail thumbnail-1" data-aos-delay="500" data-aos="fade-up" data-aos-duration="1000">
-                <img src="/images/universidad/oficial/fondobanner1.jpg" alt="Girl Image">
+                <img :src="imgBanner1" alt="Girl Image">
             </div>
             <div class="thumbnail thumbnail-2" data-aos-delay="500" data-aos="fade-down" data-aos-duration="1000">
-                <img src="/images/universidad/oficial/fondobanner2.jpg" alt="Girl Image">
+                <img :src="imgBanner2" alt="Girl Image">
             </div>
             <div class="thumbnail thumbnail-3" data-aos-delay="500" data-aos="fade-right" data-aos-duration="1000">
-                <img src="/images/universidad/oficial/fondobanner3.png" alt="Girl Image">
+                <img :src="imgBanner3" alt="Girl Image">
             </div>
             <div class="online-support" data-aos-delay="600" data-aos="fade-right" data-aos-duration="1000">
                 <div class="inner">
@@ -56,27 +56,26 @@
 <script>
     import { useInstitucionStore } from '@/stores/store'
     export default {
+        async asyncData({ $axios }) {
+            if(useInstitucionStore().institucion == null){
+                const institucion = await $axios.$get('/api/InstitucionUPEA/'+process.env.APP_ID_INSTITUCION)
+                useInstitucion.asignarInstitucion(institucion.Descripcion)  
+            }
+        },
         data() {
             return {
-                institucion_nombre: 'ninguna',
-                frase: '',
-                celular: useInstitucionStore().institucion.institucion_celular1
+                institucion_nombre: useInstitucionStore().institucion.institucion_nombre,
+                frase: useInstitucionStore().frase,
+                celular: useInstitucionStore().institucion.institucion_celular1,
+                
+                /* IMAGENES */
+                imgBanner1: useInstitucionStore().imgBanner1,
+                imgBanner2: useInstitucionStore().imgBanner2,
+                imgBanner3: useInstitucionStore().imgBanner3
             };
         },
         components: {
             MouseMove: () => import('@/components/animation/MouseMove')
-        },
-        methods: {
-            createdComponent(){
-                const userInstitucion = useInstitucionStore()
-                console.log("nombre institucion desde store")
-                console.log(userInstitucion.carreras)                
-                this.institucion_nombre = userInstitucion.institucion.institucion_nombre
-                this.frase = userInstitucion.frase
-            },
-        },
-        created() {
-            this.createdComponent()
-        },
+        },        
     }
 </script>

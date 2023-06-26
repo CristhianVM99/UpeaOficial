@@ -341,5 +341,12 @@
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/ConvocatoriasDetalle/_detalle.vue",
     "chunkName": "pages/ConvocatoriasDetalle/_detalle",
     "_name": "_f44f033a"
+  },
+  {
+    "name": "ConvocatoriasLista-categoria",
+    "path": "/ConvocatoriasLista/:categoria?",
+    "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/ConvocatoriasLista/_categoria.vue",
+    "chunkName": "pages/ConvocatoriasLista/_categoria",
+    "_name": "_09e85b5a"
   }
 ]

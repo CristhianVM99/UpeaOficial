@@ -37,7 +37,7 @@
                         src: useInstitucionStore().institucion.institucion_link_video_vision,                        
                     }
                 ],
-                video_title: 'Universidada Publica de El Alto Desafiando límites y construyendo sueños',
+                video_title: useInstitucionStore().videoTitleVideo,
                 index: null
             }            
         }

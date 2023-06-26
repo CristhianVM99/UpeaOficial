@@ -43,18 +43,10 @@
         data () {
             return {
                 eventData,
-                publicaciones: null,
-                preTitle:'lo ultimo de ...',
-                title:'Publicaciones',  
+                publicaciones: useInstitucionStore().publicacionesUniversidad,
+                preTitle: useInstitucionStore().preTitlePublicaciones,
+                title: useInstitucionStore().titlePublicacionesUpea,  
             }
-        },
-        methods: {
-            createdComponent(){                
-                this.publicaciones = useInstitucionStore().publicacionesUniversidad                
-            }
-        },
-        created() {
-            this.createdComponent()
         },
     }
 </script>

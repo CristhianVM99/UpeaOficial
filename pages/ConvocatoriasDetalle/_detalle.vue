@@ -55,13 +55,42 @@
             const useInstitucion = useInstitucionStore()
             const institucion = await $axios.$get('/api/InstitucionUPEA/'+process.env.APP_ID_INSTITUCION)
             useInstitucion.asignarInstitucion(institucion.Descripcion)                   
-            if(useInstitucionStore().publicacionesUniversidad == null){                
+            if(useInstitucionStore().publicacionesUniversidad == null || useInstitucionStore().serviciosUniversidad == null){                
                 const publicacionesUniversidad = await $axios.$get('/api/publicacionesAll/'+ process.env.APP_ID_INSTITUCION)
-                useInstitucion.asignarPublicacionesUniversidad(publicacionesUniversidad)
-            }
-            if(useInstitucionStore().gacetasUniversidad == null){
+                let publicaciones = []
+                let servicios = []                
+                /* CLASIFICAION DE PUBLICACIONES */
+                publicacionesUniversidad.forEach(pub => {
+                    switch (pub.publicaciones_tipo) {
+                        case 'SERVICIO':
+                            servicios.push(pub)
+                            break;
+                        case 'PUBLICACION':
+                            publicaciones.push(pub)
+                            break;
+                        default:
+                            publicaciones.push(pub)
+                            break;
+                    }
+                });
+                useInstitucion.asignarPublicacionesUniversidad(publicaciones)
+                useInstitucion.asignarServiciosUniversidad(servicios)
+
+            }            
+            if(useInstitucionStore().gacetasUniversidad == null || useInstitucionStore().auditoriasUniversidad == null){
                 const gacetasUniversidad = await $axios.$get('/api/gacetaunivAll/' + process.env.APP_ID_INSTITUCION)
-                useInstitucion.asignarGacetasUniversidad(gacetasUniversidad)                
+                let auditorias =  []
+                let gacetas = []
+                /* CLASIFICACION DE GACETAS */                
+                gacetasUniversidad.forEach(gac => {
+                    if(gac.gaceta_titulo.includes('AUDITORIA')){
+                        auditorias.push(gac)
+                    }else{
+                        gacetas.push(gac)
+                    }
+                });
+                useInstitucion.asignarGacetasUniversidad(gacetas)
+                useInstitucion.asignarAuditoriasUniversidad(auditorias)
             }
             if(useInstitucionStore().eventosUniversidad == null){
                 const eventosUniversidad = await $axios.$get('/api/eventoAll/' + process.env.APP_ID_INSTITUCION)
@@ -94,8 +123,10 @@
                 coleccion: {},
                 id_coleccion: this.$route.query.id,
                 publicaciones: useInstitucionStore().publicacionesUniversidad,
+                servicios: useInstitucionStore().serviciosUniversidad,
                 publicacionesCarreras : useInstitucionStore().publicacionesCarreras,
                 gacetas: useInstitucionStore().gacetasUniversidad,
+                auditorias: useInstitucionStore().auditoriasUniversidad,
                 eventos: useInstitucionStore().eventosUniversidad,
                 videos: useInstitucionStore().videosUniversidad,
                 carreras: useInstitucionStore().carreras,
@@ -140,9 +171,21 @@
                                 this.coleccion = e
                             }
                         });
+                    case 'servicios':
+                        this.servicios.forEach(e => {
+                            if(e.publicaciones_id == this.id_coleccion){
+                                this.coleccion = e
+                            }
+                        });
                         break;
                     case 'gacetas':
                         this.gacetas.forEach(e => {
+                            if(e.gaceta_id == this.id_coleccion){
+                                this.coleccion = e
+                            }
+                        });
+                    case 'auditorias':
+                        this.auditorias.forEach(e => {
                             if(e.gaceta_id == this.id_coleccion){
                                 this.coleccion = e
                             }
@@ -182,7 +225,7 @@
         },
         head() {
             return {
-                title: 'Blog Standard'
+                title: 'UPEA | CONVOCATORIA DETALLE'
             }
         },
     }

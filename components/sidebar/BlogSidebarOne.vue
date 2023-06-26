@@ -44,10 +44,16 @@
                             <n-link to="/convocatorias/publicaciones">publicaciones <span>({{ cant_pub }})</span></n-link>
                         </li>
                         <li>
+                            <n-link to="/convocatorias/servicios">servicios <span>({{ cant_ser }})</span></n-link>
+                        </li>
+                        <li>
                             <n-link to="/convocatorias/eventos">eventos <span>({{ cant_eve }})</span></n-link>
                         </li>
                         <li>
                             <n-link to="/convocatorias/gacetas">gacetas <span>({{ cant_gac }})</span></n-link>
+                        </li>
+                        <li>
+                            <n-link to="/convocatorias/auditorias">auditorias <span>({{ cant_aud }})</span></n-link>
                         </li>
                         <li>
                             <n-link to="/convocatorias/videos">videos <span>({{ cant_vid }})</span></n-link>
@@ -101,13 +107,42 @@
             const useInstitucion = useInstitucionStore()
             const institucion = await $axios.$get('/api/InstitucionUPEA/'+process.env.APP_ID_INSTITUCION)
             useInstitucion.asignarInstitucion(institucion.Descripcion)                   
-            if(useInstitucionStore().publicacionesUniversidad == null){                
+            if(useInstitucionStore().publicacionesUniversidad == null || useInstitucionStore().serviciosUniversidad == null){                
                 const publicacionesUniversidad = await $axios.$get('/api/publicacionesAll/'+ process.env.APP_ID_INSTITUCION)
-                useInstitucion.asignarPublicacionesUniversidad(publicacionesUniversidad)
-            }
-            if(useInstitucionStore().gacetasUniversidad == null){
+                let publicaciones = []
+                let servicios = []                
+                /* CLASIFICAION DE PUBLICACIONES */
+                publicacionesUniversidad.forEach(pub => {
+                    switch (pub.publicaciones_tipo) {
+                        case 'SERVICIO':
+                            servicios.push(pub)
+                            break;
+                        case 'PUBLICACION':
+                            publicaciones.push(pub)
+                            break;
+                        default:
+                            publicaciones.push(pub)
+                            break;
+                    }
+                });
+                useInstitucion.asignarPublicacionesUniversidad(publicaciones)
+                useInstitucion.asignarServiciosUniversidad(servicios)
+
+            }            
+            if(useInstitucionStore().gacetasUniversidad == null || useInstitucionStore().auditoriasUniversidad == null){
                 const gacetasUniversidad = await $axios.$get('/api/gacetaunivAll/' + process.env.APP_ID_INSTITUCION)
-                useInstitucion.asignarGacetasUniversidad(gacetasUniversidad)                
+                let auditorias =  []
+                let gacetas = []
+                /* CLASIFICACION DE GACETAS */                
+                gacetasUniversidad.forEach(gac => {
+                    if(gac.gaceta_titulo.includes('AUDITORIA')){
+                        auditorias.push(gac)
+                    }else{
+                        gacetas.push(gac)
+                    }
+                });
+                useInstitucion.asignarGacetasUniversidad(gacetas)
+                useInstitucion.asignarAuditoriasUniversidad(auditorias)
             }
             if(useInstitucionStore().eventosUniversidad == null){
                 const eventosUniversidad = await $axios.$get('/api/eventoAll/' + process.env.APP_ID_INSTITUCION)
@@ -121,11 +156,16 @@
         data() {
             return {                
                 publicaciones: useInstitucionStore().publicacionesUniversidad,
+                servicios: useInstitucionStore().serviciosUniversidad,            
                 gacetas: useInstitucionStore().gacetasUniversidad,
+                auditorias: useInstitucionStore().auditoriasUniversidad,
                 eventos: useInstitucionStore().eventosUniversidad,
                 videos: useInstitucionStore().videosUniversidad,
+
                 cant_pub: 0,
+                cant_ser: 0,
                 cant_gac: 0,
+                cant_aud: 0,
                 cant_vid: 0,
                 cant_eve: 0,
             }
@@ -133,7 +173,9 @@
         methods: {
             createdComponent(){
                 this.cant_pub = Object.keys(this.publicaciones).length
+                this.cant_ser = Object.keys(this.servicios).length
                 this.cant_gac = Object.keys(this.gacetas).length
+                this.cant_aud = Object.keys(this.auditorias).length
                 this.cant_vid = Object.keys(this.videos).length
                 this.cant_eve = Object.keys(this.videos).length
             }

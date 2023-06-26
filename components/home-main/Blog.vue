@@ -9,7 +9,7 @@
                     data-aos-delay="100" 
                     data-aos="fade-up" 
                     data-aos-duration="800"
-                    v-for="servicio in servicios" :key="servicio.servicio_id"
+                    v-for="servicio in servicios" :key="servicio.publicaciones_id"
                 >
                     <BlogPostOne :servicio="servicio" />
                 </div>
@@ -35,10 +35,34 @@
         data () {
             return {
                 blogData,
-                preTitle: 'Upea',
-                title: 'Servicios',
-                servicios: useInstitucionStore().servicios
+                preTitle: useInstitucionStore().preTitleServicios,
+                title: useInstitucionStore().titleServicios,
+                servicios: useInstitucionStore().serviciosUniversidad,
             }
+        },
+        methods: {            
+            splitYear(fecha) {
+            const [year] = fecha.split('-');
+            return parseInt(year);
+            },
+            
+            splitMonth(fecha) {
+            const [, month] = fecha.split('-');
+            return this.getMonthName(parseInt(month));
+            },
+            
+            splitDay(fecha) {
+            const [, , day] = fecha.split('-');
+            return parseInt(day);
+            },
+            
+            getMonthName(month) {
+            const monthNames = [
+                'ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN',
+                'jUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'
+            ];
+            return monthNames[month - 1];
+            },                        
         }
     }
 </script>

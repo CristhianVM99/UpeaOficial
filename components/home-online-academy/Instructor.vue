@@ -29,20 +29,11 @@
         data () {
             return {
                 instructorData,
-                iniciales:'',
-                title:'Nuestras Autoridades',  
-                autoridades: null,  
+                iniciales: useInstitucionStore().institucion.institucion_iniciales,
+                title: useInstitucionStore().autoridadesSeccionTitulo,  
+                autoridades: useInstitucionStore().institucion.autoridad,  
                 url_api: process.env.APP_ROOT_API,                          
             }
-        },
-        methods: {
-            createdComponent(){                
-                this.iniciales = useInstitucionStore().institucion.institucion_iniciales
-                this.autoridades = useInstitucionStore().institucion.autoridad
-            }
-        },
-        created() {
-            this.createdComponent()
-        },
+        },        
     }
 </script>

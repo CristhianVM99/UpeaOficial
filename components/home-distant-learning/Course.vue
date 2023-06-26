@@ -44,7 +44,7 @@
                             <div class="content">                                
                                 <span class="course-level">{{ evento.evento_tipo }}</span>
                                 <h5 class="title">
-                                    <n-link to="/course/course-details">{{ evento.evento_titulo }}</n-link>
+                                    <n-link :to="{ path: '/ConvocatoriasDetalle/'+tipo, query: { id: evento.evento_id }}">{{ evento.evento_titulo }}</n-link>
                                 </h5>
                                 <div class="course-rating">
                                     <div class="rating">
@@ -56,17 +56,17 @@
                                     </div>
                                 </div>
                                 <div class="course-price">{{ evento.evento_lugar }}</div>
-                                <p>{{ evento.evento_descripcion }}</p>
+                                <!--<p>{{ evento.evento_descripcion }}</p>-->
                                 <ul class="course-meta">
                                 </ul>
-                                <n-link to="/course/course-details" class="edu-btn btn-secondary btn-small">Ver mas detalles <i class="icon-4"></i></n-link>
+                                <n-link :to="{ path: '/ConvocatoriasDetalle/'+tipo, query: { id: evento.evento_id }}" class="edu-btn btn-secondary btn-small">Ver mas detalles <i class="icon-4"></i></n-link>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="course-view-all" data-aos-delay="150" data-aos="fade-up" data-aos-duration="1200">
-                <n-link to="/course/course-one" class="edu-btn">Ver mas Eventos<i class="icon-4"></i></n-link>
+                <n-link to="/convocatorias/eventos" class="edu-btn">Ver mas Eventos<i class="icon-4"></i></n-link>
             </div>
         </div>
     </div>
@@ -82,15 +82,12 @@
         data () {
             return {
                 courseData,
-                preTitle: 'lo ultimo de ...',
-                title: 'Eventos',
+                preTitle: useInstitucionStore().preTitleEventos,
+                title: useInstitucionStore().titleEventos,
                 eventos: useInstitucionStore().eventosUniversidad,
                 url_api: process.env.APP_ROOT_API,
+                tipo: 'eventos'
             }
-        },
-        mounted() {
-            console.log("eventos de la universidad")
-          console.log(this.eventos)  
-        },
+        },        
     }
 </script>

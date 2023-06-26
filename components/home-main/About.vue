@@ -5,11 +5,11 @@
                 <div class="row g-5 align-items-center">
                     <div class="col-lg-6">
                         <div class="about-image-gallery">
-                            <img class="main-img-1" src="/images/universidad/oficial/fondoabout.jpg" alt="About Image">
+                            <img class="main-img-1" :src="imgAbout1" alt="About Image">
                             <div class="video-box">
                                 <div class="inner">
                                     <div class="thumb">
-                                        <img src="/images/universidad/upeaabout2.jpg" alt="About Image">
+                                        <img :src="imgAbout2" alt="About Image">
                                         <span v-for="( _, imageIndex ) in items" :key="imageIndex">
                                             <a @click="index = imageIndex" class="popup-icon video-popup-activation">
                                                 <i class="icon-18"></i>
@@ -28,7 +28,7 @@
                                         <i class="icon-21"></i>
                                     </div>
                                     <div class="content">
-                                        <h6 class="title">22+</h6>
+                                        <h6 class="title">{{ aniversario_universidad }}</h6>
                                         <span class="subtitle">Años</span>
                                     </div>
                                 </div>
@@ -87,23 +87,19 @@
                         src: useInstitucionStore().institucion.institucion_link_video_vision
                     }
                 ],
-                inciales:'',
-                title: 'desafiando barreras "La lucha imparable de la Universidad Pública de El Alto"',
-                descripcion: 'La Universidad Pública de El Alto, ubicada en la ciudad de El Alto en Bolivia, ha sido una institución educativa que ha desafiado numerosas barreras a lo largo de su historia. Fundada en el año 2000, esta universidad ha sido un símbolo de lucha y perseverancia para la comunidad de El Alto y ha brindado oportunidades educativas a miles de estudiantes que de otro modo no hubieran tenido acceso a la educación superior.',
-                primerPunto:'Inclusión educativa para comunidades marginadas.',
-                segundoPunto:'Valoración de la diversidad cultural y étnica.',
-                tercerPunto:'nvestigación científica y desarrollo local sostenible.',
-                index: null
+                inciales: useInstitucionStore().institucion.institucion_iniciales,
+                title: useInstitucionStore().titleAbout,
+                descripcion: useInstitucionStore().descripcionAbout,
+                primerPunto:useInstitucionStore().primerPuntoAbout,
+                segundoPunto:useInstitucionStore().segundoPuntoAbout,
+                tercerPunto: useInstitucionStore().tercerPuntoAbout,
+                index: null,
+                aniversario_universidad: useInstitucionStore().aniversario_universidad,
+                
+                /* IMAGENES */
+                imgAbout1: useInstitucionStore().imgAbout1,
+                imgAbout2: useInstitucionStore().imgAbout2,
             }
-        },
-        methods: {
-            createdComponent(){
-                const useInstitucion = useInstitucionStore()
-                this.inciales =  useInstitucion.institucion.institucion_iniciales                                            
-            }
-        },
-        created() {  
-            this.createdComponent()          
-        },
+        },        
     }
 </script>

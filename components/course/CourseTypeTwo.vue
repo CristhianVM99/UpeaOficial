@@ -1,10 +1,12 @@
 <template>
     <div class="edu-course course-style-3" :class="extraClass">
-        <div v-if="tipo == 'publicaciones'">
+
+        <!-- PUBLICACIONES Y SERVICIOS UNIVERSITARIOS y ALL =========================-->
+        <div v-if="tipo == 'publicaciones' || tipo == 'servicios' || tipo == 'All'">
             <div class="inner">
             <div class="thumbnail">
-                <n-link to="/course/course-details">
-                    <img  style="height:462px;object-fit: cover;" :src="url_api + '/Publicaciones/' + coleccion.publicaciones_imagen" :alt="coleccion.publicaciones_titulo">
+                <n-link :to="{ path: '/ConvocatoriasDetalle/'+tipo, query: { id: coleccion.publicaciones_id }}">
+                    <img  style="height:100%;height: 420px;object-fit: cover;" :src="url_api + '/Publicaciones/' + coleccion.publicaciones_imagen" :alt="coleccion.publicaciones_titulo">
                 </n-link>
                 <div class="time-top">
                     <span class="duration"><i class="icon-61"></i>{{ coleccion.publicaciones_tipo }}</span>
@@ -13,7 +15,7 @@
             <div class="content">
                 <span class="course-level">{{ coleccion.publicaciones_documento }}</span>
                 <h5 class="title">
-                    <n-link to="/course/course-details">{{ coleccion.publicaciones_titulo }}</n-link>
+                    <n-link :to="{ path: '/ConvocatoriasDetalle/'+tipo, query: { id: coleccion.publicaciones_id }}">{{ coleccion.publicaciones_titulo }}</n-link>
                 </h5>
                 <p>{{ coleccion.publicaciones_fecha }}</p>
                 <div class="course-rating">
@@ -32,49 +34,24 @@
             </div>
             </div>
         </div>    
-        <div v-if="tipo == 'All'">
+
+        <!-- GACETAS UNIVERSITARIAS ===========================================-->
+        <div v-if="tipo == 'gacetas' || tipo == 'auditorias'">
             <div class="inner">
             <div class="thumbnail">
-                <n-link to="/course/course-details">
-                    <img  style="height:462px;object-fit: cover;" :src="url_api + '/Publicaciones/' + coleccion.publicaciones_imagen" :alt="coleccion.publicaciones_titulo">
-                </n-link>
-                <div class="time-top">
-                    <span class="duration"><i class="icon-61"></i>{{ coleccion.publicaciones_tipo }}</span>
-                </div>
-            </div>
-            <div class="content">
-                <span class="course-level">{{ coleccion.publicaciones_documento }}</span>
-                <h5 class="title">
-                    <n-link to="/course/course-details">{{ coleccion.publicaciones_titulo }}</n-link>
-                </h5>
-                <p>{{ coleccion.publicaciones_fecha }}</p>
-                <div class="course-rating">
-                    <div class="rating">
-                        <i class="icon-23"></i>
-                        <i class="icon-23"></i>
-                        <i class="icon-23"></i>
-                        <i class="icon-23"></i>
-                        <i class="icon-23"></i>
-                    </div>
-                    <!--<span class="rating-count">({{ course.ratingAvarage }} /{{ course.ratingTotal }} {{ course.ratingTotal > 1 ? 'Ratings' : 'Rating' }})</span>-->
-                </div>
-                <div class="read-more-btn">
-                    <n-link :to="{ path: '/ConvocatoriasDetalle/'+tipo, query: { id: coleccion.publicaciones_id }}" class="edu-btn btn-small btn-secondary">Ver mas detalles <i class="icon-4"></i></n-link>
-                </div>
-            </div>
-            </div>
-        </div> 
-        <div v-if="tipo == 'gacetas'">
-            <div class="inner">
-            <div class="thumbnail">
-                <n-link to="/course/course-details">
-                    <vue-pdf :src="url_api + '/Gaceta/' + coleccion.gaceta_documento" :page="currentPage" :options="pdfOptions" />
+                <n-link :to="{ path: '/ConvocatoriasDetalle/'+tipo, query: { id: coleccion.gaceta_id }}">
+                    <!--<vue-pdf :src="url_api + '/Gaceta/' + coleccion.gaceta_documento" :page="currentPage" :options="pdfOptions" />-->
+                    <!--<vue-pdf-embed
+                    :source="url_api + '/InstitucionUpea/' + coleccion.gaceta_documento"
+                    :page="1"
+                    height="410"
+                    />-->
                 </n-link>                
             </div>
             <div class="content">
                 <span class="course-level">{{ coleccion.gaceta_documento }}</span>
                 <h5 class="title">
-                    <n-link to="/course/course-details">{{ coleccion.gaceta_titulo }}</n-link>
+                    <n-link :to="{ path: '/ConvocatoriasDetalle/'+tipo, query: { id: coleccion.gaceta_id }}">{{ coleccion.gaceta_titulo }}</n-link>
                 </h5>
                 <p>{{ coleccion.gaceta_fecha }}</p>
                 <div class="course-rating">
@@ -93,10 +70,12 @@
             </div>
             </div>
         </div>  
+
+        <!-- EVENTOS UNIVERSITARIOS ============================================-->
         <div v-if="tipo == 'eventos'">
             <div class="inner">
             <div class="thumbnail">
-                <n-link to="/course/course-details">
+                <n-link :to="{ path: '/ConvocatoriasDetalle/'+tipo, query: { id: coleccion.evento_id }}">
                     <img  style="height:462px;object-fit: cover;" :src="url_api + '/Eventos/' + coleccion.evento_imagen" alt="img" />
                 </n-link>
                 <div class="time-top">
@@ -106,7 +85,7 @@
             <div class="content">
                 <span class="course-level">{{ coleccion.evento_lugar }}</span>
                 <h5 class="title">
-                    <n-link to="/course/course-details">{{ coleccion.evento_titulo }}</n-link>
+                    <n-link :to="{ path: '/ConvocatoriasDetalle/'+tipo, query: { id: coleccion.evento_id }}">{{ coleccion.evento_titulo }}</n-link>
                 </h5>
                 <p>{{ coleccion.evento_fecha }}</p>
                 <div class="course-rating">
@@ -125,6 +104,8 @@
             </div>
             </div>
         </div>
+
+        <!-- VIDEOS UNIVERSITARIOS =============================================-->
         <div v-if="tipo == 'videos'">
             <div class="inner">
             <div class="thumbnail">
@@ -140,7 +121,7 @@
             <div class="content">
                 <span class="course-level">Upea</span>
                 <h5 class="title">
-                    <n-link to="/course/course-details">{{ coleccion.video_titulo }}</n-link>
+                    <n-link :to="{ path: '/ConvocatoriasDetalle/'+tipo, query: { id: coleccion.video_id }}">{{ coleccion.video_titulo }}</n-link>
                 </h5>
                 <div class="course-rating">
                     <div class="rating">
@@ -162,7 +143,7 @@
 </template>
 
 <script>    
-    import VuePdf from 'vue-pdf';
+    //import VuePdf from 'vue-pdf';
     export default {
         props: ['extraClass','tipo','coleccion'],
         data() {
@@ -175,7 +156,7 @@
             }
         },
         components: {
-            VuePdf
+            //VuePdf
         },
     }
 </script>

@@ -1,15 +1,16 @@
 import { defineStore } from "pinia";
 
 export const useInstitucionStore = defineStore("Institucion", {
-  state: () => ({    
-    frase: 'La Universidad del pueblo y para el pueblo',
+  state: () => ({        
     url_api: process.env.APP_ROOT_API,
-
+    aniversario_universidad: process.env.APP_ANIVERSARIO_UPEA,
     institucion: null,    
     carreras: null,
     menuAreasyCarreras: null,
     publicacionesCarreras: null,
     publicacionesUniversidad: null,
+    serviciosUniversidad: null,
+    auditoriasUniversidad: null,
     eventosUniversidad: null,
     gacetasUniversidad: null,
     videosUniversidad: null,
@@ -158,45 +159,65 @@ export const useInstitucionStore = defineStore("Institucion", {
         carrera: 'PSICOMOTRICIDAD Y DEPORTES',
         link: 'https://inscripcionespsicomotricidad.upea.bo/'
       },        
-    ],
-    servicios:[
-      {
-         servicio_id: 1, 
-         titulo: 'Radio Upea',
-         descripcion: 'Escuchalos todos los sabados de 15:00 a 16:00 por la 100 FM.',
-         calendario: 'Marzo 8, 2021',
-         institucion: 'Upea',
-         imagen: '/images/servicios/serv01.jpg',
-      },
-      {
-         servicio_id: 2,
-         titulo: 'Veterianaria',
-         descripcion: 'La Clinica Veterinaria Upea Difunde sus Servicios a la Poblacion.',
-         calendario: 'Diciembre 6, 2020',
-         institucion: 'Upea',
-         imagen: '/images/servicios/serv02.jpg',
-      },
-      {
-         servicio_id: 3, 
-         titulo: 'Odontologia',
-         descripcion: 'Clinica Odonotologica de la Upea ofrece sus Servicios a la Poblcación.',
-         calendario: 'Noviembre 28, 2019',
-         institucion: 'Upea',
-         imagen: '/images/servicios/serv03.jpeg',
-      },
-      {
-         servicio_id: 4,
-         titulo: "Jisk'a Wawa",
-         descripcion: 'Centro de Desarrollo Infantil, reanuda sus servicios con la Upea.',
-         calendario: 'Marzo 4, 2019',
-         institucion: 'Upea',
-         imagen: '/images/servicios/serv04.jpg',
-      }
-      
-    ],
-    
+    ],    
+    linksCarrerasAll: null,        
+
+    /*
+
+     INFORMACION DE LA PAGINA PRINCIPAL (MAIN) ==========================================================
+
+     */
+    /* BANNER:  */
+    frase: 'La Universidad del pueblo y para el pueblo',
+    imgBanner1: '/images/universidad/oficial/fondobanner1.jpg',
+    imgBanner2: '/images/universidad/oficial/fondobanner2.jpg',
+    imgBanner3: '/images/universidad/oficial/fondobanner3.png',
+
+    /* ABOUT */
+    titleAbout: 'Desafiando barreras "La lucha imparable de la Universidad Pública de El Alto"',
+    descripcionAbout: 'La Universidad Pública de El Alto, ubicada en la ciudad de El Alto en Bolivia, ha sido una institución educativa que ha desafiado numerosas barreras a lo largo de su historia. Fundada en el año 2000, esta universidad ha sido un símbolo de lucha y perseverancia para la comunidad de El Alto y ha brindado oportunidades educativas a miles de estudiantes que de otro modo no hubieran tenido acceso a la educación superior.',
+    primerPuntoAbout:'Inclusión educativa para comunidades marginadas.',
+    segundoPuntoAbout:'Valoración de la diversidad cultural y étnica.',
+    tercerPuntoAbout:'Investigación científica y desarrollo local sostenible.',
+    imgAbout1: '/images/universidad/oficial/fondoabout.jpg',
+    imgAbout2: '/images/universidad/upeaabout2.jpg',
+
+    /* VIDEO */
+    videoTitleVideo: 'Universidada Publica de El Alto Desafiando límites y construyendo sueños',
+
+    /* AUTORIDADES  */
+    autoridadesSeccionTitulo: 'Nuestras Autoridades',
+
+    /* PUBLICACIONES CARRERAS */
+    titlePublicacionesCarreras: 'Comunicados Universitarios',
+
+    /* PUBLICACIONES UPEA */
+    preTitlePublicaciones:'lo ultimo de ...',
+    titlePublicacionesUpea:'Publicaciones',
+
+    /* CONTACTO */
+    titleEmailContacto : 'ponerse en contacto al:',
+    titleTelefonoContacto: 'Llamanos a travéz de:',
+
+    /* EVENTOS */
+    preTitleEventos: 'lo ultimo de ...',
+    titleEventos: 'Eventos',
+
+    /* SERVICIOS */
+    preTitleServicios: 'Upea',
+    titleServicios: 'Servicios',
+
+    /*
+
+     CARRERAS (TODAS LAS CARREAS) ==========================================================
+
+     */
+
+     titleCarreras: 'Nuestras Carreras'
+
   }),
   actions:{
+    /* METODOS PARA ASIGNAR DATOS A LAS VARIABLES.... */
     asignarInstitucion(colection){
       this.institucion = colection
     },
@@ -212,6 +233,12 @@ export const useInstitucionStore = defineStore("Institucion", {
     asignarPublicacionesUniversidad(colection){
       this.publicacionesUniversidad = colection
     },
+    asignarServiciosUniversidad(colection){
+      this.serviciosUniversidad = colection
+    },
+    asignarAuditoriasUniversidad(colection){
+      this.auditoriasUniversidad = colection
+    },
     asignarEventosUniversidad(colection){
       this.eventosUniversidad = colection
     },
@@ -220,6 +247,9 @@ export const useInstitucionStore = defineStore("Institucion", {
     },
     asignarVideosUniversidad(colection){
       this.videosUniversidad = colection
+    },
+    asignarLinksCarreras(colection){
+      this.linksCarrerasAll = colection
     }
   }
 });

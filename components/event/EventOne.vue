@@ -2,8 +2,8 @@
     <div class="edu-event event-style-1">
         <div class="inner">
             <div class="thumbnail">
-                <n-link to="/event/event-details">
-                    <img style="height:462px;object-fit: cover;" :src="url_api + '/Publicaciones/' + publicacion.publicaciones_imagen" alt="" />
+                <n-link :to="{ path: '/ConvocatoriasDetalle/'+tipo, query: { id: publicacion.publicaciones_id }}">
+                    <img style="height:462px;object-fit: cover;width: 100%;" :src="url_api + '/Publicaciones/' + publicacion.publicaciones_imagen" alt="" />
                 </n-link>
                 <div class="event-time">
                     <span><i class="icon-33"></i>{{ splitYear(publicacion.publicaciones_fecha) }}</span>
@@ -15,7 +15,7 @@
                     <span class="month">{{ splitMonth(publicacion.publicaciones_fecha) }}</span>
                 </div>
                 <h5 class="title">
-                    <n-link to="/event/event-details">{{ publicacion.publicaciones_titulo }}</n-link>
+                    <n-link :to="{ path: '/ConvocatoriasDetalle/'+tipo, query: { id: publicacion.publicaciones_id }}">{{ publicacion.publicaciones_titulo }}</n-link>
                 </h5>
                 <ul class="event-meta">
                     <li><i class="icon-40"></i>{{ direccion }}</li>
@@ -39,6 +39,7 @@
                 año: null,
                 mes: null,
                 dia: null,
+                tipo: 'publicaciones',
             }
         },
         methods: {            
@@ -59,12 +60,11 @@
             
             getMonthName(month) {
             const monthNames = [
-                'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
-                'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
+                'ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN',
+                'jUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'
             ];
             return monthNames[month - 1];
-            },
-                        
+            },                        
         }
     }
 </script>

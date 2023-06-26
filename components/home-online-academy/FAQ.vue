@@ -50,26 +50,13 @@
         },
         data() {
             return {
-                inciales:'',
-                title: '',
-                mision:'',
-                vision:'',
-                objetivos:'',
-                sobre_ins:'',
+                inciales: useInstitucionStore().institucion.institucion_iniciales,
+                title: useInstitucionStore().institucion.institucion_nombre,
+                mision: useInstitucionStore().institucion.institucion_mision,
+                vision: useInstitucionStore().institucion.institucion_vision,
+                objetivos: useInstitucionStore().institucion.institucion_objetivos,
+                sobre_ins: useInstitucionStore().institucion.institucion_sobre_ins,
             }
-        },
-        methods: {
-            createdComponent(){                
-                this.inciales =  useInstitucionStore().institucion.institucion_iniciales                
-                this.title = useInstitucionStore().institucion.institucion_nombre
-                this.mision = useInstitucionStore().institucion.institucion_mision
-                this.vision = useInstitucionStore().institucion.institucion_vision
-                this.objetivos = useInstitucionStore().institucion.institucion_objetivos
-                this.sobre_ins = useInstitucionStore().institucion.institucion_sobre_ins
-            }
-        },
-        created() {  
-            this.createdComponent()          
-        },
+        },        
     }
 </script>

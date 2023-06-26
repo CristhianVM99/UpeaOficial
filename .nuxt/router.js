@@ -53,6 +53,7 @@ const _c35912d8 = () => interopDefault(import('../pages/shop/wishlist.vue' /* we
 const _50b362a8 = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 const _8c915100 = () => interopDefault(import('../pages/Convocatorias/_categoria.vue' /* webpackChunkName: "pages/Convocatorias/_categoria" */))
 const _f44f033a = () => interopDefault(import('../pages/ConvocatoriasDetalle/_detalle.vue' /* webpackChunkName: "pages/ConvocatoriasDetalle/_detalle" */))
+const _09e85b5a = () => interopDefault(import('../pages/ConvocatoriasLista/_categoria.vue' /* webpackChunkName: "pages/ConvocatoriasLista/_categoria" */))
 
 const emptyFn = () => {}
 
@@ -261,6 +262,10 @@ export const routerOptions = {
     path: "/ConvocatoriasDetalle/:detalle?",
     component: _f44f033a,
     name: "ConvocatoriasDetalle-detalle"
+  }, {
+    path: "/ConvocatoriasLista/:categoria?",
+    component: _09e85b5a,
+    name: "ConvocatoriasLista-categoria"
   }],
 
   fallback: false

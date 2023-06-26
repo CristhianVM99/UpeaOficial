@@ -16,8 +16,8 @@
                         <div class="layout-switcher">
                             <label>Grid</label>
                             <ul class="switcher-btn">
-                                <li><n-link to="/course/course-two" class="active"><i class="icon-53"></i></n-link></li>
-                                <li><n-link to="/course/course-four"><i class="icon-54"></i></n-link></li>
+                                <li><n-link :to="'/convocatorias/'+$route.params.categoria" class="active"><i class="icon-53"></i></n-link></li>
+                                <li><n-link :to="'/convocatoriasLista/'+$route.params.categoria" ><i class="icon-54"></i></n-link></li>
                             </ul>
                         </div>
                         <div class="edu-sorting">
@@ -42,6 +42,16 @@
                     </div>
                 </div>
 
+                <!-- publicaciones -->
+                <div class="row g-5" v-if="$route.params.categoria == 'servicios'">
+                    <div 
+                        class="col-md-6 col-lg-4"                        
+                        v-for="(servicio) in servicios" :key="servicio.publicaciones_id"
+                    >
+                        <CourseTypeTwo :tipo='$route.params.categoria' :coleccion="servicio" extraClass="course-box-shadow" />
+                    </div>
+                </div>
+
                 <!-- publicaciones de las carreras-->
                 <div class="row g-5" v-if="$route.params.categoria == 'All'">
                     <div 
@@ -57,6 +67,16 @@
                     <div 
                         class="col-md-6 col-lg-4"                                                
                         v-for="(gaceta) in gacetas" :key="gaceta.gaceta_id"
+                    >
+                        <CourseTypeTwo :tipo='$route.params.categoria' :coleccion="gaceta" extraClass="course-box-shadow" />
+                    </div>
+                </div>
+
+                <!-- auditorias -->
+                <div class="row g-5" v-if="$route.params.categoria == 'auditorias'">
+                    <div 
+                        class="col-md-6 col-lg-4"                                                
+                        v-for="(gaceta) in auditorias" :key="gaceta.gaceta_id"
                     >
                         <CourseTypeTwo :tipo='$route.params.categoria' :coleccion="gaceta" extraClass="course-box-shadow" />
                     </div>
@@ -108,7 +128,7 @@
             CourseTypeTwo: () => import('@/components/course/CourseTypeTwo'),
             FooterOne: () => import("@/components/footer/FooterOne")
         },
-        async asyncData({ $axios }) {
+        async asyncData({ $axios }) {                        
             const useInstitucion = useInstitucionStore()
             const institucion = await $axios.$get('/api/InstitucionUPEA/'+process.env.APP_ID_INSTITUCION)
             useInstitucion.asignarInstitucion(institucion.Descripcion)   
@@ -121,13 +141,42 @@
                 const carreras  = await $axios.$get('api/upeacarrera')    
                 useInstitucion.asignarCarreras(carreras)  
             }
-            if(useInstitucionStore().publicacionesUniversidad == null){                
+            if(useInstitucionStore().publicacionesUniversidad == null || useInstitucionStore().serviciosUniversidad == null){                
                 const publicacionesUniversidad = await $axios.$get('/api/publicacionesAll/'+ process.env.APP_ID_INSTITUCION)
-                useInstitucion.asignarPublicacionesUniversidad(publicacionesUniversidad)
-            }
-            if(useInstitucionStore().gacetasUniversidad == null){
+                let publicaciones = []
+                let servicios = []
+                /* CLASIFICACION DE PUBLICACION */
+                publicacionesUniversidad.forEach(pub => {
+                    switch (pub.publicaciones_tipo) {
+                        case 'SERVICIO':
+                            servicios.push(pub)
+                            break;
+                        case 'PUBLICACION':
+                            publicaciones.push(pub)
+                            break;
+                        default:
+                            publicaciones.push(pub)
+                            break;
+                    }
+                });
+                useInstitucion.asignarPublicacionesUniversidad(publicaciones)
+                useInstitucion.asignarServiciosUniversidad(servicios)
+
+            } 
+            if(useInstitucionStore().gacetasUniversidad == null || useInstitucionStore().auditoriasUniversidad == null){
                 const gacetasUniversidad = await $axios.$get('/api/gacetaunivAll/' + process.env.APP_ID_INSTITUCION)
-                useInstitucion.asignarGacetasUniversidad(gacetasUniversidad)                
+                let auditorias =  []
+                let gacetas = []
+                /* CLASIFICACION DE GACETAS */                
+                gacetasUniversidad.forEach(gac => {
+                    if(gac.gaceta_titulo.includes('AUDITORIA')){
+                        auditorias.push(gac)
+                    }else{
+                        gacetas.push(gac)
+                    }
+                });
+                useInstitucion.asignarGacetasUniversidad(gacetas)
+                useInstitucion.asignarAuditoriasUniversidad(auditorias)
             }
             if(useInstitucionStore().eventosUniversidad == null){
                 const eventosUniversidad = await $axios.$get('/api/eventoAll/' + process.env.APP_ID_INSTITUCION)
@@ -142,11 +191,13 @@
             return {
                 courseData,
                 defaultNumberOfCourses: 9,
-                publicaciones: [],
+                publicaciones: useInstitucionStore().publicacionesUniversidad,
+                servicios: useInstitucionStore().serviciosUniversidad,
                 publicacionesAll:useInstitucionStore().publicacionesCarreras,
-                gacetas: [],
-                eventos: [],
-                videos: [],
+                gacetas: useInstitucionStore().gacetasUniversidad,
+                auditorias: useInstitucionStore().auditoriasUniversidad,
+                eventos: useInstitucionStore().eventosUniversidad,
+                videos: useInstitucionStore().videosUniversidad,
                 carreras: useInstitucionStore().carreras,
                 cantidad: 0,
             }
@@ -180,19 +231,21 @@
             createdComponent(){
                 switch (this.$route.params.categoria) {
                     case 'publicaciones':
-                            this.publicaciones = useInstitucionStore().publicacionesUniversidad                            
+                            this.cantidad = Object.keys(this.publicaciones).length
+                        break;
+                    case 'servicios':
                             this.cantidad = Object.keys(this.publicaciones).length
                         break;
                     case 'gacetas':
-                            this.gacetas = useInstitucionStore().gacetasUniversidad
                             this.cantidad = Object.keys(this.gacetas).length
                         break;
+                    case 'auditorias':
+                            this.cantidad = Object.keys(this.auditorias).length
+                        break;
                     case 'eventos':
-                            this.eventos = useInstitucionStore().eventosUniversidad
                             this.cantidad = Object.keys(this.eventos).length
                         break;
                     case 'videos':
-                            this.videos = useInstitucionStore().videosUniversidad
                             this.cantidad = Object.keys(this.videos).length
                         break;
                     case 'All':
@@ -212,7 +265,7 @@
         },
         head() {
             return {
-                title: 'Course Style 2'
+                title: 'UPEA | CONVOCATORIAS'
             }
         }
     }

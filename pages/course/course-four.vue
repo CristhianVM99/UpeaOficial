@@ -1,7 +1,7 @@
 <template>
     <div id="main-wrapper" class="main-wrapper">
 
-        <HeaderOne />
+        <Header showHeaderTop="true" />
 
         <BreadCrumbTwo title='Course Style 4' />
         
@@ -69,7 +69,7 @@
     import courseData from '~/data/course';
     export default {
         components: {
-            HeaderOne: () => import("@/components/header/HeaderOne"),
+            Header: () => import("@/components/header/HeaderThree"),
             BreadCrumbTwo: () => import("@/components/common/BreadCrumbTwo"),
             CourseSidebarOne: () => import("@/components/sidebar/CourseSidebarOne"),
             CourseTypeSix: () => import('@/components/course/CourseTypeSix'),

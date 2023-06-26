@@ -20,21 +20,18 @@
 <script>
 import { useInstitucionStore } from '@/stores/store'
 export default {
-    data() {
-        return {
-            celular1: null,                
-            correo1: null,
-            admin_link: process.env.APP_ADMIN_API
-        };
-    },
-    methods: {
-        createdComponent(){
-            this.celular1 = useInstitucionStore().institucion.institucion_celular1
-            this.correo1 = useInstitucionStore().institucion.institucion_correo1
+    async asyncData({ $axios }) {
+        if(useInstitucionStore().institucion == null){
+            const institucion = await $axios.$get('/api/InstitucionUPEA/'+process.env.APP_ID_INSTITUCION)
+            useInstitucion.asignarInstitucion(institucion.Descripcion)  
         }
     },
-    created() {
-        this.createdComponent()
-    },
+    data() {
+        return {
+            celular1: 123445,                
+            correo1: 12345,
+            admin_link: process.env.APP_ADMIN_API
+        };
+    },        
 }
 </script>

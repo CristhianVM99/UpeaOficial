@@ -34,10 +34,5 @@
                 url_api: process.env.APP_ROOT_API
             }
         },
-        created() {
-            console.log("url_api de instructor")
-            console.log(this.url_api)
-            
-        },
     }
 </script>

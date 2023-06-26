@@ -9,7 +9,7 @@
         <li class="has-droupdown"><n-link to="">Areas y Carreras</n-link>
             <ul class="mega-menu">                               
                 <li v-for="(area, id_area) in menuAreasyCarreras" :key="id_area">
-                    <h6 class="menu-title">{{ area.area }}</h6>
+                    <!--<h6 class="menu-title">{{ area.area }}</h6>-->
                     <ul class="submenu">
                         <li v-for="(carrera, id_carrera) in area.carreras" :key="id_carrera">
                             <a :href="getLinkCarrera(carrera.nombre_simple)" target="_blank">{{ carrera.carrera }}</a>
@@ -30,36 +30,31 @@
                 <li>
                     <h6 class="menu-title">vicerectorado</h6>
                     <ul class="submenu">
-                        <li><n-link to="/gallery-grid">vicerectorado</n-link></li>
-                        <li><n-link to="/gallery-masonry">unidad de sistemas de informacion y estadistica</n-link></li>
-                        <li><n-link to="/event/event-grid">registros y admiciones</n-link></li>
+                        <li><a href="https://vicerrectorado.upea.bo/l">vicerectorado</a></li>
+                        <li><a href="https://www.sie.upea.bo/l">unidad de sistemas de informacion y estadistica</a></li>
+                        <li><a href="https://registrosadmisiones.upea.bo/">registros y admiciones</a></li>
                     </ul>
-                </li>
-                <li>
-                    <h6 class="menu-title">extension universitaria</h6>
-                    <ul class="submenu">
-                        <li><n-link to="/shop">Shop</n-link></li>
-                    </ul>
-                </li>                
+                </li>                              
             </ul>            
         </li>
 
         <li class="has-droupdown"><n-link to="">Avisos</n-link>
             <ul class="submenu">
                 <li><n-link to="/convocatorias/publicaciones">publicaciones</n-link></li>
+                <li><n-link to="/convocatorias/servicios">servicios</n-link></li>                
                 <li><n-link to="/convocatorias/gacetas">gacetas</n-link></li>
+                <li><n-link to="/convocatorias/auditorias">auditorias</n-link></li>
                 <li><n-link to="/convocatorias/eventos">eventos</n-link></li>
-                <li><n-link to="/convocatorias/videos">videos</n-link></li>                
+                <li><n-link to="/convocatorias/videos">videos</n-link></li>                                
             </ul>
         </li>
         <li class="has-droupdown"><n-link to="">Mas</n-link>
             <ul class="submenu">
-                <li><n-link to="/contact-us">repositorio institucional</n-link></li>
-                <li><n-link to="/contact-us">disbec</n-link></li>
-                <li><n-link to="/contact-us">mi biblioteca upea</n-link></li>
-                <li><n-link to="/contact-us">radio upea</n-link></li>
-                <li><n-link to="/contact-us">tv upea</n-link></li>
-                <li><n-link to="/convocatorias/auditorias">auditoria</n-link></li>
+                <li><a href="http://repositorio.upea.bo/" target="_blank">repositorio institucional</a></li>
+                <li><a href="https://disbedc.upea.bo/" target="_blank">disbec</a></li>
+                <li><a href="http://mibiblioteca.upea.bo/" target="_blank">mi biblioteca upea</a></li>
+                <li><a href="https://fm100.upea.bo/" target="_blank">radio upea</a></li>
+                <li><a href="https://tv.upea.bo/" target="_blank">tv upea</a></li>
             </ul>
         </li>
     </ul>
