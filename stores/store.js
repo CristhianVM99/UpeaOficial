@@ -3,6 +3,8 @@ import { defineStore } from "pinia";
 export const useInstitucionStore = defineStore("Institucion", {
   state: () => ({        
     url_api: process.env.APP_ROOT_API,
+    clave_encryptacion: 'UniversidadPublicaDeElAlto',
+    color_intermedio: '#511116',
     aniversario_universidad: process.env.APP_ANIVERSARIO_UPEA,
     institucion: null,    
     carreras: null,

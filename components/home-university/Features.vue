@@ -13,8 +13,8 @@
                         </svg>
                     </div>
                     <div class="content">
-                        <h4 class="title">Scholarship Facility</h4>
-                        <p>Lorem ipsum dolor sit amet cont adipiscing elit.</p>
+                        <h4 class="title">Acceso equitativo a la educación</h4>
+                        <p>La Universidad Pública de El Alto brinda igualdad de oportunidades.</p>
                     </div>
                 </div>
 
@@ -39,8 +39,8 @@
                         </svg>
                     </div>
                     <div class="content">
-                        <h4 class="title">Skilled Lecturers</h4>
-                        <p>Lorem ipsum dolor sit amet cont adipiscing elit.</p>
+                        <h4 class="title">Enfoque en la investigación y la excelencia académica</h4>
+                        <p>La Universidad Pública de El Alto enfatiza la investigación y calidad académica.</p>
                     </div>
                 </div>
 
@@ -57,8 +57,8 @@
                         </svg>
                     </div>
                     <div class="content">
-                        <h4 class="title">Book Library &amp; Store</h4>
-                        <p>Lorem ipsum dolor sit amet cont adipiscing elit.</p>
+                        <h4 class="title">Vínculo con la comunidad y responsabilidad social</h4>
+                        <p>La Universidad Pública de El Alto se compromete con la comunidad y responsabilidad social.</p>
                     </div>
                 </div>
             </div>

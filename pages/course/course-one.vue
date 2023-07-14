@@ -68,15 +68,24 @@
             FooterOne: () => import("@/components/footer/FooterOne")
         },
         async asyncData({ $axios }) {                        
-            const useInstitucion = useInstitucionStore()                        
             if(useInstitucionStore().carreras == null){
+                const useInstitucion = useInstitucionStore()                        
                 let carreras  = await $axios.$get('api/upeacarrera')                                        
+                let instituciones = await $axios.$get('/api/InstitucionUPEA')                
                 carreras.forEach(car => {
-                    let links = []
-                    links.push($axios.$get('/api/linksIntExtAll/'+car.carrera_id))
-                    car.links = links
-                });
-                useInstitucion.asignarCarreras(carreras)                                          
+                    instituciones.forEach(async inst => {
+                        if(inst.id_carrera == car.carrera_id){
+                            const lista = await $axios.$get('/api/linksIntExtAll/' + inst.institucion_id);
+                            car.links = lista
+                        }
+                    });
+                });                
+                useInstitucion.asignarCarreras(carreras)  
+            }
+            if(useInstitucionStore().institucion == null){
+                const useInstitucion = useInstitucionStore()                        
+                const institucion = await $axios.$get('/api/InstitucionUPEA/'+process.env.APP_ID_INSTITUCION)
+                useInstitucion.asignarInstitucion(institucion.Descripcion)                   
             }
         },
         data() {

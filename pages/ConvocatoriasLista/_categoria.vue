@@ -10,7 +10,7 @@
             <div class="container">
                 <div class="row g-5">
                     <div class="col-lg-3">
-                        <CourseSidebarOne />
+                        <BlogSidebarOne/>
                     </div>
 
                     <div class="col-lg-9 col-pl--35">
@@ -43,7 +43,7 @@
                             <div 
                                 class="edu-course-six-each-item"
                                 v-for="publicacion in publicacionesAll" 
-                                :key="publicacion.publicaciones_id"
+                                :key="encryptID(publicacion.publicaciones_id)"
                             >
                                 <CourseTypeSix :tipo='$route.params.categoria' :coleccion="publicacion" />   
                             </div>
@@ -54,7 +54,7 @@
                             <div 
                                 class="edu-course-six-each-item"
                                 v-for="publicacion in publicaciones" 
-                                :key="publicacion.publicaciones_id"
+                                :key="encryptID(publicacion.publicaciones_id)"
                             >
                                 <CourseTypeSix :tipo='$route.params.categoria' :coleccion="publicacion" />   
                             </div>
@@ -65,7 +65,7 @@
                             <div 
                                 class="edu-course-six-each-item"
                                 v-for="servicio in servicios" 
-                                :key="servicio.publicaciones_id"
+                                :key="encryptID(servicio.publicaciones_id)"
                             >
                                 <CourseTypeSix :tipo='$route.params.categoria' :coleccion="servicio" />   
                             </div>
@@ -76,7 +76,7 @@
                             <div 
                                 class="edu-course-six-each-item"
                                 v-for="gaceta in gacetas" 
-                                :key="gaceta.gaceta_id"
+                                :key="encryptID(gaceta.gaceta_id)"
                             >
                                 <CourseTypeSix :tipo='$route.params.categoria' :coleccion="gaceta" />   
                             </div>
@@ -87,7 +87,7 @@
                             <div 
                                 class="edu-course-six-each-item"
                                 v-for="auditoria in auditorias" 
-                                :key="auditoria.gaceta_id"
+                                :key="encryptID(auditoria.gaceta_id)"
                             >
                                 <CourseTypeSix :tipo='$route.params.categoria' :coleccion="auditoria" />   
                             </div>
@@ -98,7 +98,7 @@
                             <div 
                                 class="edu-course-six-each-item"
                                 v-for="evento in eventos" 
-                                :key="evento.evento_id"
+                                :key="encryptID(evento.evento_id)"
                             >
                                 <CourseTypeSix :tipo='$route.params.categoria' :coleccion="evento" />   
                             </div>
@@ -109,7 +109,7 @@
                             <div 
                                 class="edu-course-six-each-item"
                                 v-for="video in videos" 
-                                :key="video.video_id"
+                                :key="encryptID(video.video_id)"
                             >
                                 <CourseTypeSix :tipo='$route.params.categoria' :coleccion="video" />   
                             </div>
@@ -136,6 +136,7 @@
 </template>
 
 <script>
+    import CryptoJS from 'crypto-js'    
     import { useInstitucionStore } from '@/stores/store'
     import courseData from '~/data/course';
     export default {
@@ -143,6 +144,7 @@
             Header: () => import("@/components/header/HeaderThree"),
             BreadCrumbTwo: () => import("@/components/common/BreadCrumbTwo"),
             CourseSidebarOne: () => import("@/components/sidebar/CourseSidebarOne"),
+            BlogSidebarOne: () => import('@/components/sidebar/BlogSidebarOne'),
             CourseTypeSix: () => import('@/components/course/CourseTypeSix'),
             FooterOne: () => import("@/components/footer/FooterOne")
         },
@@ -225,6 +227,7 @@
                 videos: useInstitucionStore().videosUniversidad,
                 carreras: useInstitucionStore().carreras,
                 cantidad: 0,
+                clave_encryptacion: useInstitucionStore().clave_encryptacion,
             }
         },
         computed: {
@@ -238,6 +241,11 @@
             }
         },
         methods: {
+            encryptID(id) {
+                const encryptionKey = this.clave_encryptacion // Cambia esto por tu clave de encriptaci贸n
+                const ciphertext = CryptoJS.AES.encrypt(id.toString(), encryptionKey).toString()
+                return ciphertext
+            },
             paginateClickCallback( page ) {
                 this.currentPage = Number( page );
             },

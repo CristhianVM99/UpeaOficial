@@ -7,8 +7,8 @@
                     <div class="header-brand">
                         <div class="logo">
                             <n-link to="/">
-                                <img class="logo-light" src="/images/logo/logo-dark-2.png" alt="Dark Logo" v-if="$colorMode.value === 'light'">
-                                <img class="logo-dark" src="/images/logo/logo-light-2.png" alt="Light Logo" v-if="$colorMode.value === 'dark'">
+                                <img class="logo-light" src="/images/logo/logodark.png" style="width:220px;" alt="Dark Logo" v-if="$colorMode.value === 'light'">
+                                <img class="logo-dark" src="/images/logo/logoblanco.png" style="width:220px;" alt="Light Logo" v-if="$colorMode.value === 'dark'">
                             </n-link>
                         </div>
                     </div>
@@ -19,11 +19,11 @@
                     </div>
                     <div class="header-right">
                         <ul class="header-action">
-                            <li class="icon search-icon">
+                            <!--<li class="icon search-icon">
                                 <button class="search-trigger" @click="searchPopUpOpen( 'addClass', 'open' )">
                                     <i class="icon-2"></i>
                                 </button>
-                            </li>
+                            </li>-->
                             <li class="icon light-dark-icon">
                                 <ColorMode />
                             </li>

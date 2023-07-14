@@ -385,7 +385,8 @@
         }
     }
     &.cta-style-3 {
-        background: var(--color-secondary);
+        //background: var(--color-secondary);
+        background: var(--color-btn);
         @media #{$sm-layout} {
             padding: 40px 30px;
         }

@@ -2,9 +2,9 @@
     <div class="edu-course course-style-1 hover-button-bg-white" :class="extraClass">
         <div class="inner">
             <div class="thumbnail">
-                <a href="#" target="_blank" v-for="(logo, logo_id) in coleccion.logos" :key="logo_id">
-                    <img width="100" height="100" :src="url_api + '/Carrera/Logos/' + logo.logos_carrera" :alt="logo.logos_carrera">-
-                </a>
+                <div v-for="(logo, logo_id) in coleccion.logos" :key="logo_id">
+                    <img width="100%" height="100%" :src="url_api + '/Carrera/Logos/' + logo.logos_carrera" :alt="logo.logos_carrera">-
+                </div>
                 <div class="time-top">
                     <span class="duration">{{ coleccion.nombre_simple }}</span>
                 </div>
@@ -29,10 +29,10 @@
                     <li><i class="icon-24"></i>{{ course.lessons }} {{ course.lessons > 1 ? 'Lessons' : 'Lesson' }}</li>
                     <li><i class="icon-25"></i>{{ course.students }} {{ course.students ? 'Students' : 'Student' }}</li>
                 </ul>-->
+                <p>Links de la Carrera</p>
                 <div class="read-more-btn" v-for="(link,link_id) in coleccion.links" :key="link_id">
-                        <a :href="link.url_links" class="edu-btn btn-border btn-medium" target="_blank">
-                            <!--{{ link.ei_nombre }} <i class="icon-4"></i>-->
-                            {{ link.nombre_links }} <i class="icon-4"></i>
+                        <a :href="link.ei_link" class="edu-btn btn-border btn-medium" target="_blank">
+                            {{ link.ei_nombre }} <i class="icon-4"></i>
                         </a>
                 </div>
             </div>
@@ -79,7 +79,7 @@
             };
         },        
         created(){
-            console.log(typeof(this.coleccion.links))
+            console.log(this.coleccion)
             
         }
     }

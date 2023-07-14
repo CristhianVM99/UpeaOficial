@@ -3,20 +3,28 @@
 -------------------------*/
 :root {
     //Themes colors
-    --color-primary: #1ab69d;
-    --color-primary-old: #0202C1;    
-    --color-primary-old-3: linear-gradient(to left, #0202C1 , #C10202 );
-    --color-secondary: #ee4a62;    
-    --color-secondary-old: #C10202;
-    --color-textSecondary: #ff5b5c;
+    --color-primary-old: #1ab69d;
+    --color-secondary-old: #ee4a62; 
+    --gradient-primary-old: linear-gradient(-90deg, #31b978 0%, #1ab69d 100%);
+    --color-textSecondary-old: #ff5b5c;
+    //#610202 #511116 #5C059D
+
+    //COLORES PRIMARIOS
+    //--color-primary: linear-gradient(to left,#0202C1,#511116,#C10202);               
+    //--color-secondary: linear-gradient(to left,#511116,#C10202);
+    --color-primary: #0202C1;
+    --color-secondary: #C10202;
     --color-tertiary: #f8b81f;
+    --color-quaternary: #511116;
+    --color-btn: linear-gradient(to left,#0202C1,#511116,#C10202);
+    --color-btn-hover: linear-gradient(to left,#511116,#C10202);
+    --color-textSecondary: #ff5b5c;
     --color-dark: #111212;
     --color-heading: #181818;
     --dark-color-heading: #ffffff;
     --color-border: #e5e5e5;
     --dark-color-border: #282f3a;
-    --color-body: #808080;
-    --gradient-primary-old: linear-gradient(-90deg, #31b978 0%, #1ab69d 100%);
+    --color-body: #808080;    
     --gradient-primary: linear-gradient(-90deg, #0202C1 0%, #C10202 100%);
     --bg-color: #EAF0F2;
     --dark-bg-color: #020b17;
@@ -40,17 +48,29 @@
     --color-lighten04: #f7f5f2; 
 
     // Extra Color 
-    --color-extra01: #0ecd73;
-    --color-extra02: #8e56ff;
-    --color-extra03: #f92596;
-    --color-extra04: #5866eb;
-    --color-extra05: #f8941f;
-    --color-extra06: #39c0fa;
-    --color-extra07: #da04f8;
-    --color-extra08: #4664e4;
-    --color-extra09: #525151;
-    --color-extra10: #404040;
-    --color-extra11: #22272e;
+    //--color-extra01: #0ecd73;
+    //--color-extra02: #8e56ff;
+    //--color-extra03: #f92596;
+    //--color-extra04: #5866eb;
+    //--color-extra05: #f8941f;
+    //--color-extra06: #39c0fa;
+    //--color-extra07: #da04f8;
+    //--color-extra08: #4664e4;
+    //--color-extra09: #525151;
+    //--color-extra10: #404040;
+    //--color-extra11: #22272e;
+
+    --color-extra01: orange;
+    --color-extra02: orange;
+    --color-extra03: orange;
+    --color-extra04: orange;
+    --color-extra05: orange;
+    --color-extra06: orange;
+    --color-extra07: orange;
+    --color-extra08: orange;
+    --color-extra09: orange;
+    --color-extra10: orange;
+    --color-extra11: orange;
 
     // Notify Colors 
     --color-success: #3EB75E;

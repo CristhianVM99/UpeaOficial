@@ -3,8 +3,8 @@
         <div class="content-wrap">
             <div class="site-logo">
                 <n-link to="/">
-                    <img class="logo-light" src="/images/logo/logo-dark.png" alt="Dark Logo">
-                    <img class="logo-dark" src="/images/logo/logo-white.png" alt="Light Logo">
+                    <img class="logo-light" src="/images/logo/logodark.png" style="width:220px;" alt="Dark Logo">
+                    <img class="logo-dark" src="/images/logo/logoblanco.png" style="width:220px;" alt="Light Logo">
                 </n-link>
             </div>
             <div class="close-button">
@@ -12,7 +12,7 @@
             </div>
             <div class="inner">
                 <form class="search-form" action="#">
-                    <input type="text" class="edublink-search-popup-field" placeholder="Search Here...">
+                    <input type="text" class="edublink-search-popup-field" placeholder="Busca aqui...">
                     <button class="submit-button"><i class="icon-2"></i></button>
                 </form>
             </div>

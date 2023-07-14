@@ -2,40 +2,29 @@
     <ul class="mainmenu">
         <li class="has-droupdown"><n-link to="/">Inicio</n-link>
             <ul class="submenu">
-                <li><n-link to="/about-us-two">About</n-link></li>
-                <li><n-link to="/contact-me">Contact</n-link></li>                
+                <li><n-link to="/about-us-two">Sobre Nosotros</n-link></li>
+                <li><n-link to="/contact-me">Contacto</n-link></li>                
             </ul>
         </li>
-        <li class="has-droupdown"><n-link to="">Areas y Carreras</n-link>
+        <!--<li class="has-droupdown"><n-link to="">Areas y Carreras</n-link>            
             <ul class="mega-menu">                               
                 <li v-for="(area, id_area) in menuAreasyCarreras" :key="id_area">
-                    <!--<h6 class="menu-title">{{ area.area }}</h6>-->
+                    <h6 style="font-size: 0.7em;" class="menu-title">{{ area.area }}</h6>
                     <ul class="submenu">
                         <li v-for="(carrera, id_carrera) in area.carreras" :key="id_carrera">
-                            <a :href="getLinkCarrera(carrera.nombre_simple)" target="_blank">{{ carrera.carrera }}</a>
+                            <a style="font-size: 0.7em;" :href="getLinkCarrera(carrera.nombre_simple)" target="_blank">{{ carrera.carrera }}</a>
                         </li>                        
                     </ul>
                 </li>
-            </ul>
-        </li>
+            </ul>          
+        </li>-->
 
         <li class="has-droupdown"><n-link to="">Unidades Administrativas</n-link>
-            <ul class="mega-menu">
-                <li>
-                    <h6 class="menu-title">rectorado</h6>
-                    <ul class="submenu">
-                        <li><n-link to="/about-us-one">Unidad de Titulos y Diplomas</n-link></li>                        
-                    </ul>                    
-                </li>
-                <li>
-                    <h6 class="menu-title">vicerectorado</h6>
-                    <ul class="submenu">
-                        <li><a href="https://vicerrectorado.upea.bo/l">vicerectorado</a></li>
-                        <li><a href="https://www.sie.upea.bo/l">unidad de sistemas de informacion y estadistica</a></li>
-                        <li><a href="https://registrosadmisiones.upea.bo/">registros y admiciones</a></li>
-                    </ul>
-                </li>                              
-            </ul>            
+            <ul class="submenu">
+                <li><a href="https://vicerrectorado.upea.bo/l">vicerectorado</a></li>
+                <li><a href="https://www.sie.upea.bo/l">unidad de sistemas de informacion y estadistica</a></li>
+                <li><a href="https://registrosadmisiones.upea.bo/">registros y admiciones</a></li>
+            </ul>                    
         </li>
 
         <li class="has-droupdown"><n-link to="">Avisos</n-link>
@@ -65,7 +54,7 @@
         data() {
             return {
                 menuAreasyCarreras: useInstitucionStore().menuAreasyCarreras,
-                linksCarreras: useInstitucionStore().linksCarreras
+                linksCarreras: useInstitucionStore().linksCarreras,
             }
         },
         methods: {

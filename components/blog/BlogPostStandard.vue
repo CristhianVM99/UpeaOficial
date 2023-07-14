@@ -10,23 +10,29 @@
                     frameborder="0"                        
                     style="border-radius: 5px;width: 100%; height: 420px;"
                 />                
-                <!--<vue-pdf v-if="tipo == 'gacetas'" :src="url_api + '/Gaceta/' + coleccion.gaceta_documento" :page="currentPage" :options="pdfOptions" />-->
+                <!--<vue-pdf v-if="tipo == 'gacetas'" :src="url_api + '/Gaceta/' + coleccion.gaceta_documento" :page="currentPage" />                -->
+                <client-only v-if="tipo == 'gacetas' || tipo == 'auditorias'">
+                    <pdf-embed
+                        :source="url_api + '/Gaceta/' + coleccion.gaceta_documento"
+                        :page="1"
+                    />
+                </client-only>
             </div>
             <div class="content">
                 <div class="category-wrap">
-                    <n-link v-if="tipo == 'publicaciones' || tipo == 'All' || tipo == 'servicios'" to="/blog/blog-masonry" class="blog-category">{{ coleccion.publicaciones_tipo }}</n-link>
-                    <n-link v-if="tipo == 'eventos'" to="/blog/blog-masonry" class="blog-category">{{ coleccion.evento_tipo }}</n-link>
+                    <h4 v-if="tipo == 'publicaciones' || tipo == 'All' || tipo == 'servicios'" class="blog-category">{{ coleccion.publicaciones_tipo }}</h4>
+                    <h4 v-if="tipo == 'eventos'" class="blog-category">{{ coleccion.evento_tipo }}</h4>
                 </div>
                 <h3 class="title">
-                    <n-link v-if="tipo == 'publicaciones' || tipo == 'All' || tipo == 'servicios'" to="/blog/blog-details">{{ coleccion.publicaciones_titulo }}</n-link>
-                    <n-link v-if="tipo == 'eventos'" to="/blog/blog-details">{{ coleccion.evento_titulo }}</n-link>
-                    <n-link v-if="tipo == 'gacetas' || tipo == 'auditorias'" to="/blog/blog-details">{{ coleccion.gaceta_titulo }}</n-link>
-                    <n-link v-if="tipo == 'videos'" to="/blog/blog-details">{{ coleccion.video_titulo }}</n-link>
+                    <h2 v-if="tipo == 'publicaciones' || tipo == 'All' || tipo == 'servicios'">{{ coleccion.publicaciones_titulo }}</h2>
+                    <h2 v-if="tipo == 'eventos'" >{{ coleccion.evento_titulo }}</h2>
+                    <h2 v-if="tipo == 'gacetas' || tipo == 'auditorias'" >{{ coleccion.gaceta_titulo }}</h2>
+                    <h2 v-if="tipo == 'videos'" >{{ coleccion.video_titulo }}</h2>
                 </h3>
                 <ul class="blog-meta">
                     <li v-if="tipo == 'publicaciones' || tipo == 'All' || tipo == 'servicios'"><i class="icon-27"></i>{{ coleccion.publicaciones_fecha }}</li>
                     <li v-if="tipo == 'eventos'"><i class="icon-27"></i>{{ coleccion.evento_fecha }}</li>
-                    <li v-if="tipo == 'gacetas' || tipo == 'auditorias'"><i class="icon-27"></i>{{ coleccion.gaceta_fecha }}</li>
+                    <li v-if="tipo == 'gacetas' || tipo == 'auditorias'"><i class="icon-27"></i>{{ convertirFecha(coleccion.gaceta_fecha) }}</li>
                     <li v-if="tipo == 'publicaciones' || tipo == 'All' || tipo == 'servicios'"><i class="icon-28"></i>{{ coleccion.publicaciones_autor }} / {{ coleccion.publicaciones_documento }}</li>
                     <li v-if="tipo == 'evento'"><i class="icon-28"></i>{{ coleccion.evento_lugar }} / {{ coleccion.evento_hora }}</li>
                 </ul>
@@ -45,7 +51,7 @@
                             v-for="(galeria) in coleccion.evento_galeria"
                             :key="galeria.galeria_id"
                         >
-                            <n-link to="/blog/blog-details">
+                            <n-link to="/">
                                 <img :src="url_api + '/Eventos/' + galeria.galeria_imagen" :alt="galeria.galeria_imagen">
                             </n-link>
                         </div>
@@ -71,9 +77,7 @@
     </div>
 </template>
 
-<script>
-    //import VuePdf from 'vue-pdf';
-    import { format } from 'date-fns';
+<script>    
     export default {
         props: ['coleccion','tipo'],
         data() {
@@ -100,14 +104,20 @@
                     }
                 },
                 url_api: process.env.APP_ROOT_API, 
-                currentPage: 1,
-                pdfOptions: {
-                    // Opciones adicionales del visor de PDF.js
-                },
+                currentPage: 1,                
+            }
+        },
+        methods: {            
+            convertirFecha(fecha) {
+              const fechaObjeto = new Date(fecha);
+              const dia = fechaObjeto.getDate();
+              const mes = fechaObjeto.toLocaleString('es', { month: 'long' });
+              const año = fechaObjeto.getFullYear();
+              return `${dia} de ${mes} ${año}`;
             }
         },
         components: {
-            //VuePdf
+            
         },
         computed: {
             /*fechaFormateada(fecha_data) {

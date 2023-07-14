@@ -96,20 +96,20 @@
         data() {
             return {
                 property: 'value',
-                /*celular: useInstitucionStore().institucion.institucion_celular1,
+                celular: useInstitucionStore().institucion.institucion_celular1,
                 telefono: useInstitucionStore().institucion.institucion_telefono1,
                 email: useInstitucionStore().institucion.institucion_correo1,
                 direccion: useInstitucionStore().institucion.institucion_direccion,
                 facebook: useInstitucionStore().institucion.institucion_facebook,
                 youtube: useInstitucionStore().institucion.institucion_youtube,
-                twitter: useInstitucionStore().institucion.institucion_twitter,*/
-                celular: 12345,
+                twitter: useInstitucionStore().institucion.institucion_twitter,
+                /*celular: 12345,
                 telefono: 12345,
                 email: 12345,
                 direccion: 'direccion',
                 facebook: '#',
                 youtube: '#',
-                twitter: '#'
+                twitter: '#'*/
             };
         },
     }

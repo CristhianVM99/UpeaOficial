@@ -1,14 +1,15 @@
 <template>
     <div class="hero-banner hero-style-3 bg-image bg-image--17">
+        <!--<img src="https://abi.bo/images/Noticias/Politica/oct-22/elalto.jpg" alt="upe">-->
         <div class="container edublink-animated-shape">
             <div class="row">
                 <div class="col-xl-6 col-lg-7">
                     <div class="banner-content">
-                        <span class="subtitle">Welcome to EduBlink</span>
-                        <h1 class="title">World Best Program Best University</h1>
-                        <p>Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit.</p>
+                        <span class="subtitle">UPEA</span>
+                        <h1 class="title">{{ this.institucion_nombre }}</h1>
+                        <p>{{ this.frase }}</p>
                         <div class="banner-btn">
-                            <n-link to="/course/course-one" class="edu-btn btn-secondary">Find courses <i class="icon-4"></i></n-link>
+                            <n-link to="/course/course-one" class="edu-btn btn-secondary">Carreras <i class="icon-4"></i></n-link>
                         </div>
                     </div>
                 </div>
@@ -26,7 +27,15 @@
 </template>
 
 <script>
+    import { useInstitucionStore } from '@/stores/store'
     export default {
+        data() {
+            return {
+                institucion_nombre: useInstitucionStore().institucion.institucion_nombre,
+                frase: useInstitucionStore().frase,
+                celular: useInstitucionStore().institucion.institucion_celular1,
+            };
+        },
         components: {
             MouseMove: () => import('@/components/animation/MouseMove')
         }

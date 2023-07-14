@@ -181,7 +181,8 @@
         top: 0;
         transition: var(--transition);
         opacity: 0;
-        background-color: var(--color-primary);
+        //background-color: var(--color-primary);
+        background-color: var(--color-tertiary);
         button {
             &.wishlist-btn {
                 &:hover {
@@ -500,7 +501,8 @@
             }
         }
         &:hover {
-            background-color: var(--color-primary);
+            //background-color: var(--color-primary);
+            background: linear-gradient(45deg, var(--color-primary),var(--color-quaternary), var(--color-secondary));
             .content {
                 .title {
                     a {

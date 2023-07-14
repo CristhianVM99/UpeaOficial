@@ -9,7 +9,7 @@
                     data-aos-delay="100" 
                     data-aos="fade-up" 
                     data-aos-duration="800"
-                    v-for="servicio in servicios" :key="servicio.publicaciones_id"
+                    v-for="servicio in servicios.slice(-3).reverse()" :key="encryptID(servicio.publicaciones_id)"
                 >
                     <BlogPostOne :servicio="servicio" />
                 </div>
@@ -24,6 +24,7 @@
 </template>
 
 <script>    
+    import CryptoJS from 'crypto-js'
     import { useInstitucionStore } from '@/stores/store'
     import blogData from '~/data/blog';
     export default {
@@ -38,9 +39,16 @@
                 preTitle: useInstitucionStore().preTitleServicios,
                 title: useInstitucionStore().titleServicios,
                 servicios: useInstitucionStore().serviciosUniversidad,
+                clave_encryptacion: useInstitucionStore().clave_encryptacion,
             }
         },
-        methods: {            
+        methods: {   
+            encryptID(id) {
+                const encryptionKey = this.clave_encryptacion // Cambia esto por tu clave de encriptaci贸n
+                const ciphertext = CryptoJS.AES.encrypt(id.toString(), encryptionKey).toString()
+                return ciphertext
+            },  
+            
             splitYear(fecha) {
             const [year] = fecha.split('-');
             return parseInt(year);

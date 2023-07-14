@@ -41,6 +41,7 @@
 </template>
 
 <script>
+    import CryptoJS from 'crypto-js'    
     import { useInstitucionStore } from '@/stores/store'
     import blogData from '~/data/blog';
     export default {
@@ -121,6 +122,7 @@
                     }
                 },
                 coleccion: {},
+                clave_encryptacion: useInstitucionStore().clave_encryptacion,
                 id_coleccion: this.$route.query.id,
                 publicaciones: useInstitucionStore().publicacionesUniversidad,
                 servicios: useInstitucionStore().serviciosUniversidad,
@@ -129,7 +131,7 @@
                 auditorias: useInstitucionStore().auditoriasUniversidad,
                 eventos: useInstitucionStore().eventosUniversidad,
                 videos: useInstitucionStore().videosUniversidad,
-                carreras: useInstitucionStore().carreras,
+                carreras: useInstitucionStore().carreras,                
             }
         },
         computed: {
@@ -143,6 +145,12 @@
             }
         },                
         methods: {
+            decryptID(ciphertext) {
+                const encryptionKey = this.clave_encryptacion; // Cambia esto por tu clave de encriptación
+                const bytes = CryptoJS.AES.decrypt(ciphertext, encryptionKey);
+                const decryptedID = bytes.toString(CryptoJS.enc.Utf8);
+                return decryptedID;
+            },
             async getCarreraPublicaciones(id) {
             const response = await this.$axios.$get('/api/publicacionesAll/'+ id);                        
                 if(Object.keys(response).length > 0){        
@@ -167,40 +175,40 @@
                 switch (this.$route.params.detalle) {
                     case 'publicaciones':
                         this.publicaciones.forEach(e => {
-                            if(e.publicaciones_id == this.id_coleccion){
+                            if(e.publicaciones_id == this.decryptID(this.id_coleccion)){
                                 this.coleccion = e
                             }
                         });
                     case 'servicios':
                         this.servicios.forEach(e => {
-                            if(e.publicaciones_id == this.id_coleccion){
+                            if(e.publicaciones_id == this.decryptID(this.id_coleccion)){
                                 this.coleccion = e
                             }
                         });
                         break;
                     case 'gacetas':
                         this.gacetas.forEach(e => {
-                            if(e.gaceta_id == this.id_coleccion){
+                            if(e.gaceta_id == this.decryptID(this.id_coleccion)){
                                 this.coleccion = e
                             }
                         });
                     case 'auditorias':
                         this.auditorias.forEach(e => {
-                            if(e.gaceta_id == this.id_coleccion){
+                            if(e.gaceta_id == this.decryptID(this.id_coleccion)){
                                 this.coleccion = e
                             }
                         });
                         break;
                     case 'eventos':
                         this.eventos.forEach(e => {
-                            if(e.evento_id == this.id_coleccion){
+                            if(e.evento_id == this.decryptID(this.id_coleccion)){
                                 this.coleccion = e
                             }
                         });
                         break;
                     case 'videos':
                         this.videos.forEach(e => {
-                            if(e.video_id == this.id_coleccion){
+                            if(e.video_id == this.decryptID(this.id_coleccion)){
                                 this.coleccion = e
                             }
                         });
@@ -210,7 +218,7 @@
                             this.getCarreraPublicaciones()
                         }
                         this.publicacionesCarreras.forEach(e => {
-                            if(e.publicaciones_id == this.id_coleccion){
+                            if(e.publicaciones_id == this.decryptID(this.id_coleccion)){
                                 this.coleccion = e
                             }
                         });

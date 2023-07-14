@@ -27,6 +27,7 @@ import nuxt_plugin_observevisibility_b986de04 from 'nuxt_plugin_observevisibilit
 import nuxt_plugin_vuemasonrycss_6d616ab9 from 'nuxt_plugin_vuemasonrycss_6d616ab9' // Source: ../plugins/vue-masonry-css.js (mode: 'all')
 import nuxt_plugin_bootstrapbundlemin_61132cca from 'nuxt_plugin_bootstrapbundlemin_61132cca' // Source: ../plugins/bootstrap.bundle.min.js (mode: 'client')
 import nuxt_plugin_aos_5e4622cf from 'nuxt_plugin_aos_5e4622cf' // Source: ../plugins/aos (mode: 'client')
+import nuxt_plugin_vuepdfembed_366df154 from 'nuxt_plugin_vuepdfembed_366df154' // Source: ../plugins/vue-pdf-embed.js (mode: 'client')
 import nuxt_plugin_meta_f233a24c from 'nuxt_plugin_meta_f233a24c' // Source: ./composition-api/meta.mjs (mode: 'all')
 
 // Component: <ClientOnly>
@@ -251,6 +252,10 @@ async function createApp(ssrContext, config = {}) {
 
   if (process.client && typeof nuxt_plugin_aos_5e4622cf === 'function') {
     await nuxt_plugin_aos_5e4622cf(app.context, inject)
+  }
+
+  if (process.client && typeof nuxt_plugin_vuepdfembed_366df154 === 'function') {
+    await nuxt_plugin_vuepdfembed_366df154(app.context, inject)
   }
 
   if (typeof nuxt_plugin_meta_f233a24c === 'function') {

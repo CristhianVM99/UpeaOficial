@@ -13,6 +13,9 @@
                             <i :class="social.iconName"></i>
                         </a>
                     </li>-->
+                    <li><a :href="autoridad.facebook_autoridad" target="_blank" class="color-fb"><i class="icon-facebook"></i></a></li>                         
+                    <li><a :href="autoridad.twiter_autoridad" target="_blank" class="color-twitter"><i class="icon-twitter"></i></a></li>
+                    <li><a :href="autoridad.celular_autoridad" target="_blank" class="color-yt"><i class="icon-youtube"></i></a></li>
                 </ul>
             </div>
             <div class="content">

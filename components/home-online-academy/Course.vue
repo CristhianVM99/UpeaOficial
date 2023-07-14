@@ -9,7 +9,7 @@
                     data-aos-delay="100" 
                     data-aos="fade-up" 
                     data-aos-duration="800" 
-                    v-for="(publicacion) in publicacionesCarreras.slice(publicacionesCarreras.length - 4)" :key="publicacion.publicaciones_id"
+                    v-for="(publicacion) in publicacionesCarreras.slice(-4).reverse()" :key="encryptID(publicacion.publicaciones_id)"
                 >
                     <CourseTypeFour :publicacion="publicacion" />
                 </div>
@@ -26,6 +26,7 @@
 </template>
 
 <script>
+    import CryptoJS from 'crypto-js'
     import { useInstitucionStore } from '@/stores/store'
     import courseData from '~/data/course';
     export default {
@@ -52,9 +53,15 @@
                 title: useInstitucionStore().titlePublicacionesCarreras,
                 carreras: useInstitucionStore().carreras,
                 publicacionesCarreras: [],
+                clave_encryptacion: useInstitucionStore().clave_encryptacion,
             }
         },
-        methods: {            
+        methods: {                        
+            encryptID(id) {
+                const encryptionKey = this.clave_encryptacion // Cambia esto por tu clave de encriptación
+                const ciphertext = CryptoJS.AES.encrypt(id.toString(), encryptionKey).toString()
+                return ciphertext
+            }, 
             async getCarreraPublicaciones(id) {
             const response = await this.$axios.$get('/api/publicacionesAll/'+ id);                        
                 if(Object.keys(response).length > 0){        
@@ -64,13 +71,13 @@
                 }                
             },
             async getPublicacionesCarreraAll() {
-            try {
-                this.carreras.forEach((carrera) => {
-                    this.getCarreraPublicaciones(carrera.carrera_id)
-                })
-            } catch (e) {
-                console.log(e)
-            }
+                try {
+                    this.carreras.forEach((carrera) => {
+                        this.getCarreraPublicaciones(carrera.carrera_id)
+                    })
+                } catch (e) {
+                    console.log(e)
+                }
             },
             createdComponent(){
                 const useInstitucion = useInstitucionStore()

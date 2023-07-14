@@ -45,7 +45,8 @@ export default {
     {
       src: "~/plugins/aos",
       ssr: false,
-    },
+    },    
+    { src: '~/plugins/vue-pdf-embed.js', mode: 'client' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

@@ -8,13 +8,13 @@
                     data-aos-delay="150" 
                     data-aos="fade-up" 
                     data-aos-duration="800" 
-                    v-for="evento in eventos" 
-                    :key="evento.evento_id"
+                    v-for="evento in eventos.slice(-3).reverse()" 
+                    :key="encryptID(evento.evento_id)"
                 >
                     <div class="edu-course course-style-1 hover-button-bg-white">
                         <div class="inner">
                             <div class="thumbnail">
-                                <n-link to="/course/course-details">
+                                <n-link :to="{ path: '/ConvocatoriasDetalle/'+tipo, query: { id: encryptID(evento.evento_id) }}">
                                     <img :src="url_api + '/Eventos/' + evento.evento_imagen" alt="">
                                 </n-link>
                                 <div class="time-top">
@@ -24,7 +24,7 @@
                             <div class="content">
                                 <span class="course-level">{{ evento.evento_tipo }}</span>
                                 <h5 class="title">
-                                    <n-link to="/course/course-details">{{ evento.evento_titulo }}</n-link>
+                                    <n-link :to="{ path: '/ConvocatoriasDetalle/'+tipo, query: { id: encryptID(evento.evento_id) }}">{{ evento.evento_titulo }}</n-link>
                                 </h5>
                                 <div class="course-rating">
                                     <div class="rating">
@@ -44,9 +44,9 @@
                             <div class="content">                                
                                 <span class="course-level">{{ evento.evento_tipo }}</span>
                                 <h5 class="title">
-                                    <n-link :to="{ path: '/ConvocatoriasDetalle/'+tipo, query: { id: evento.evento_id }}">{{ evento.evento_titulo }}</n-link>
+                                    <n-link :to="{ path: '/ConvocatoriasDetalle/'+tipo, query: { id: encryptID(evento.evento_id) }}">{{ evento.evento_titulo }}</n-link>
                                 </h5>
-                                <div class="course-rating">
+                                <!--<div class="course-rating">
                                     <div class="rating">
                                         <i class="icon-23"></i>
                                         <i class="icon-23"></i>
@@ -54,12 +54,12 @@
                                         <i class="icon-23"></i>
                                         <i class="icon-23"></i>
                                     </div>
-                                </div>
+                                </div>-->
                                 <div class="course-price">{{ evento.evento_lugar }}</div>
                                 <!--<p>{{ evento.evento_descripcion }}</p>-->
                                 <ul class="course-meta">
                                 </ul>
-                                <n-link :to="{ path: '/ConvocatoriasDetalle/'+tipo, query: { id: evento.evento_id }}" class="edu-btn btn-secondary btn-small">Ver mas detalles <i class="icon-4"></i></n-link>
+                                <n-link :to="{ path: '/ConvocatoriasDetalle/'+tipo, query: { id: encryptID(evento.evento_id) }}" class="edu-btn btn-secondary btn-small">Ver mas detalles <i class="icon-4"></i></n-link>
                             </div>
                         </div>
                     </div>
@@ -73,6 +73,7 @@
 </template>
 
 <script>
+    import CryptoJS from 'crypto-js'
     import courseData from '~/data/course';
     import { useInstitucionStore } from '@/stores/store'
     export default {
@@ -86,8 +87,16 @@
                 title: useInstitucionStore().titleEventos,
                 eventos: useInstitucionStore().eventosUniversidad,
                 url_api: process.env.APP_ROOT_API,
-                tipo: 'eventos'
+                tipo: 'eventos',
+                clave_encryptacion: useInstitucionStore().clave_encryptacion,
             }
-        },        
+        },      
+        methods: {
+            encryptID(id) {
+                const encryptionKey = this.clave_encryptacion // Cambia esto por tu clave de encriptaci贸n
+                const ciphertext = CryptoJS.AES.encrypt(id.toString(), encryptionKey).toString()
+                return ciphertext
+            },  
+        }, 
     }
 </script>

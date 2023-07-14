@@ -47,7 +47,7 @@
 <script>
     export default {
         components: {
-            HeaderTopOne: () => import("@/components/header/HeaderTopOne"),
+            HeaderTopTwo: () => import("@/components/header/HeaderTopTwo"),
             Category: () => import("@/components/header/Category"),
             Navigation: () => import("@/components/header/Navigation"),
             SearchPopUp: () => import("@/components/header/SearchPopUp"),

@@ -2,20 +2,20 @@
     <div class="edu-blog blog-style-1">
         <div class="inner">
             <div class="thumbnail">
-                <n-link to="/blog/blog-details">
+                <n-link :to="{ path: '/ConvocatoriasDetalle/'+tipo, query: { id: encryptID(servicio.publicaciones_id) }}">
                     <img style="height:462px;object-fit: cover;width: 100%;" :src="url_api + '/Publicaciones/' + servicio.publicaciones_imagen" alt="" />
                 </n-link>
             </div>
             <div class="content position-top">
                 <div class="read-more-btn">
-                    <n-link :to="{ path: '/ConvocatoriasDetalle/'+tipo, query: { id: servicio.publicaciones_id }}" class="btn-icon-round">
+                    <n-link :to="{ path: '/ConvocatoriasDetalle/'+tipo, query: { id: encryptID(servicio.publicaciones_id) }}" class="btn-icon-round">
                         <i class="icon-4"></i>
                     </n-link>
                 </div>
                 <div class="category-wrap">
-                    <n-link to="/blog/blog-masonry" class="blog-category">{{ servicio.publicaciones_ }}</n-link>
+                    <n-link :to="{ path: '/ConvocatoriasDetalle/'+tipo, query: { id: encryptID(servicio.publicaciones_id) }}" class="blog-category">{{ servicio.publicaciones_tipo }}</n-link>
                 </div>
-                <h5 class="title"><n-link to="/blog/blog-details">{{ servicio.publicaciones_titulo }}</n-link></h5>
+                <h5 class="title"><n-link :to="{ path: '/ConvocatoriasDetalle/'+tipo, query: { id: encryptID(servicio.publicaciones_id) }}">{{ servicio.publicaciones_titulo }}</n-link></h5>
                 <ul class="blog-meta">
                     <li><i class="icon-27"></i>{{ splitYear(servicio.publicaciones_fecha)  }} {{ splitMonth(servicio.publicaciones_fecha)  }}  {{ splitDay(servicio.publicaciones_fecha)  }}</li>
                 </ul>
@@ -26,6 +26,7 @@
 </template>
 
 <script>
+    import CryptoJS from 'crypto-js'    
     import { useInstitucionStore } from '@/stores/store'    
         export default {
             props: ['servicio'],
@@ -33,10 +34,17 @@
                 return {
                     direccion : useInstitucionStore().institucion.institucion_direccion,
                     url_api: process.env.APP_ROOT_API, 
-                    tipo: 'servicios'
+                    tipo: 'servicios',
+                    clave_encryptacion: useInstitucionStore().clave_encryptacion,
                 }
             },
-            methods: {            
+            methods: {   
+                encryptID(id) {
+                    const encryptionKey = this.clave_encryptacion // Cambia esto por tu clave de encriptaci贸n
+                    const ciphertext = CryptoJS.AES.encrypt(id.toString(), encryptionKey).toString()
+                    return ciphertext
+                }, 
+                
                 splitYear(fecha) {
                 const [year] = fecha.split('-');
                 return parseInt(year);

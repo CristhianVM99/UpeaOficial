@@ -36,7 +36,7 @@
                 <div class="row g-5" v-if="$route.params.categoria == 'publicaciones'">
                     <div 
                         class="col-md-6 col-lg-4"                        
-                        v-for="(publicacion) in publicaciones" :key="publicacion.publicaciones_id"
+                        v-for="(publicacion) in publicaciones" :key="encryptID(publicacion.publicaciones_id)"
                     >
                         <CourseTypeTwo :tipo='$route.params.categoria' :coleccion="publicacion" extraClass="course-box-shadow" />
                     </div>
@@ -46,7 +46,7 @@
                 <div class="row g-5" v-if="$route.params.categoria == 'servicios'">
                     <div 
                         class="col-md-6 col-lg-4"                        
-                        v-for="(servicio) in servicios" :key="servicio.publicaciones_id"
+                        v-for="(servicio) in servicios" :key="encryptID(servicio.publicaciones_id)"
                     >
                         <CourseTypeTwo :tipo='$route.params.categoria' :coleccion="servicio" extraClass="course-box-shadow" />
                     </div>
@@ -56,7 +56,7 @@
                 <div class="row g-5" v-if="$route.params.categoria == 'All'">
                     <div 
                         class="col-md-6 col-lg-4"                        
-                        v-for="(publicacion) in publicacionesAll" :key="publicacion.publicaciones_id"
+                        v-for="(publicacion) in publicacionesAll" :key="encryptID(publicacion.publicaciones_id)"
                     >
                         <CourseTypeTwo :tipo='$route.params.categoria' :coleccion="publicacion" extraClass="course-box-shadow" />
                     </div>
@@ -66,7 +66,7 @@
                 <div class="row g-5" v-if="$route.params.categoria == 'gacetas'">
                     <div 
                         class="col-md-6 col-lg-4"                                                
-                        v-for="(gaceta) in gacetas" :key="gaceta.gaceta_id"
+                        v-for="(gaceta) in gacetas" :key="encryptID(gaceta.gaceta_id)"
                     >
                         <CourseTypeTwo :tipo='$route.params.categoria' :coleccion="gaceta" extraClass="course-box-shadow" />
                     </div>
@@ -76,7 +76,7 @@
                 <div class="row g-5" v-if="$route.params.categoria == 'auditorias'">
                     <div 
                         class="col-md-6 col-lg-4"                                                
-                        v-for="(gaceta) in auditorias" :key="gaceta.gaceta_id"
+                        v-for="(gaceta) in auditorias" :key="encryptID(gaceta.gaceta_id)"
                     >
                         <CourseTypeTwo :tipo='$route.params.categoria' :coleccion="gaceta" extraClass="course-box-shadow" />
                     </div>
@@ -86,7 +86,7 @@
                 <div class="row g-5" v-if="$route.params.categoria == 'eventos'">
                     <div 
                         class="col-md-6 col-lg-4"                        
-                        v-for="(evento) in eventos" :key="evento.evento_id"
+                        v-for="(evento) in eventos" :key="encryptID(evento.evento_id)"
                     >
                         <CourseTypeTwo :tipo='$route.params.categoria' :coleccion="evento" extraClass="course-box-shadow" />
                     </div>
@@ -96,7 +96,7 @@
                 <div class="row g-5" v-if="$route.params.categoria == 'videos'">
                     <div 
                         class="col-md-6 col-lg-4"                        
-                        v-for="(video) in videos" :key="video.video_id"
+                        v-for="(video) in videos" :key="encryptID(video.video_id)"
                     >
                         <CourseTypeTwo :tipo='$route.params.categoria' :coleccion="video" extraClass="course-box-shadow" />
                     </div>
@@ -119,6 +119,7 @@
 </template>
 
 <script>
+    import CryptoJS from 'crypto-js'    
     import { useInstitucionStore } from '@/stores/store'
     import courseData from '~/data/course';
     export default {
@@ -200,6 +201,7 @@
                 videos: useInstitucionStore().videosUniversidad,
                 carreras: useInstitucionStore().carreras,
                 cantidad: 0,
+                clave_encryptacion: useInstitucionStore().clave_encryptacion,
             }
         },
         computed: {
@@ -208,6 +210,11 @@
             }
         },
         methods: {
+            encryptID(id) {
+                const encryptionKey = this.clave_encryptacion // Cambia esto por tu clave de encriptaci贸n
+                const ciphertext = CryptoJS.AES.encrypt(id.toString(), encryptionKey).toString()
+                return ciphertext
+            },  
             loadMore() {
                 this.defaultNumberOfCourses += 4;
             },
@@ -227,7 +234,7 @@
             } catch (e) {
                 console.log(e)
             }
-            },
+            },            
             createdComponent(){
                 switch (this.$route.params.categoria) {
                     case 'publicaciones':

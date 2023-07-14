@@ -2,10 +2,18 @@
     <div id="main-wrapper" class="main-wrapper">
 
         <!-- SECCION DE HEADER DE LA PAGINA -->
-        <Header showHeaderTop="true" />
+        <!--<Header showHeaderTop="true" />-->
         
         <!-- SECCION DE LA UNIVERSIDAD PRINCIPAL DEL NOMBRE -->
-        <Banner />        
+        <!--<Banner />-->
+        
+        <HeaderTwo showHeaderTop="true" />
+        
+        <Banner />
+
+        <Features />
+
+        <div style="height: 100px;"></div>
         
         <!-- INFORMACION DE LA LUCHA DE LA UNIVERSIDAD PUBLICA DE EL ALTO -->
         <Information />
@@ -56,10 +64,16 @@
                 const useInstitucion = useInstitucionStore()     
                 const publicacionesCarreras = [];                       
                 const institucion = await $axios.$get('/api/InstitucionUPEA/'+process.env.APP_ID_INSTITUCION)
-                const carreras  = await $axios.$get('api/upeacarrera')                                                 
-                carreras.forEach(async car => {
-                    car.links.push(await $axios.$get('/api/linksIntExtAll/'+car.carrera_id)) 
-                });                
+                let carreras  = await $axios.$get('api/upeacarrera')                                        
+                let instituciones = await $axios.$get('/api/InstitucionUPEA')                
+                carreras.forEach(car => {
+                    instituciones.forEach(async inst => {
+                        if(inst.id_carrera == car.carrera_id){
+                            const lista = await $axios.$get('/api/linksIntExtAll/' + inst.institucion_id);
+                            car.links = lista
+                        }
+                    });
+                });                            
                 const menuAreasyCarreras = await $axios.$get('/api/area')
                 const publicacionesUniversidad = await $axios.$get('/api/publicacionesAll/'+ process.env.APP_ID_INSTITUCION)                
                 const eventosUniversidad = await $axios.$get('/api/eventoAll/' + process.env.APP_ID_INSTITUCION)
@@ -110,8 +124,11 @@
         },              
         components: {
             /* COMPONENTES: visualizacion de todos los componentes para la pagina principal que estamos usando acorde a sus carrera. */
-            Header: () => import("@/components/header/HeaderThree"),
-            Banner: () => import("@/components/home-online-academy/Banner"),
+            //Header: () => import("@/components/header/HeaderThree"),
+            //Banner: () => import("@/components/home-online-academy/Banner"),
+            HeaderTwo: () => import("@/components/header/HeaderTwo"),
+            Banner: () => import("@/components/home-university/Banner"),
+            Features: () => import("@/components/home-university/Features"),
             Information: () => import("@/components/home-main/About"),            
             Video: () => import("@/components/home-university/Video"),
             Information_mvo: () => import("@/components/home-online-academy/FAQ"),
@@ -122,6 +139,35 @@
             Eventos: () => import("@/components/home-distant-learning/Course"),            
             Servicios: () => import("@/components/home-main/Blog"),
             FooterOne: () => import("@/components/footer/FooterOne"),                                                
+        },
+        data() {
+            return {
+                carrera_colores : useInstitucionStore().institucion.colorinstitucion,
+                color_intermedio: useInstitucionStore().color_intermedio,
+            };
+        },
+        methods: {            
+            setColor(){
+              if (Object.keys(this.carrera_colores).length != 0) {
+                if (process.client) { // Verifica si el código se está ejecutando en el lado del cliente
+                  let color_primario = this.carrera_colores[0].color_primario
+                  let color_secundario = this.carrera_colores[0].color_secundario
+                  let color_terciario = this.carrera_colores[0].color_terciario
+
+                  document.documentElement.style.setProperty('--color-primary',color_primario);
+                  document.documentElement.style.setProperty('--color-secondary',color_secundario);
+                  document.documentElement.style.setProperty('--color-tertiary',color_terciario);
+                  document.documentElement.style.setProperty('--color-textSecondary',color_primario);                
+                  document.documentElement.style.setProperty('--color-btn',`linear-gradient(to left,${color_primario},${this.color_intermedio},${color_secundario})`)
+                }
+              }
+            },   
+            createdComponent(){
+                this.setColor()                
+            }
+        },
+        created(){
+            this.createdComponent()
         },
         head() {
             return {

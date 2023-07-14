@@ -28,8 +28,10 @@ export default {
     },
     data() {
         return {
-            celular1: 123445,                
-            correo1: 12345,
+            /*celular1: 123445,                
+            correo1: 12345,*/
+            celular1: useInstitucionStore().institucion.institucion_celular1,                
+            correo1: useInstitucionStore().institucion.institucion_correo1,
             admin_link: process.env.APP_ADMIN_API
         };
     },        

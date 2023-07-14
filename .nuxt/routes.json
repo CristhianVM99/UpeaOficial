@@ -3,350 +3,300 @@
     "name": "about-us-one",
     "path": "/about-us-one",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/about-us-one.vue",
-    "chunkName": "pages/about-us-one",
-    "_name": "_1fa163de"
+    "chunkName": "pages/about-us-one"
   },
   {
     "name": "about-us-three",
     "path": "/about-us-three",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/about-us-three.vue",
-    "chunkName": "pages/about-us-three",
-    "_name": "_241f3089"
+    "chunkName": "pages/about-us-three"
   },
   {
     "name": "about-us-two",
     "path": "/about-us-two",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/about-us-two.vue",
-    "chunkName": "pages/about-us-two",
-    "_name": "_0896fef7"
+    "chunkName": "pages/about-us-two"
   },
   {
     "name": "coming-soon",
     "path": "/coming-soon",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/coming-soon.vue",
-    "chunkName": "pages/coming-soon",
-    "_name": "_31061d9d"
+    "chunkName": "pages/coming-soon"
   },
   {
     "name": "contact-me",
     "path": "/contact-me",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/contact-me.vue",
-    "chunkName": "pages/contact-me",
-    "_name": "_4ccaccff"
+    "chunkName": "pages/contact-me"
   },
   {
     "name": "contact-us",
     "path": "/contact-us",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/contact-us.vue",
-    "chunkName": "pages/contact-us",
-    "_name": "_5b36db05"
+    "chunkName": "pages/contact-us"
   },
   {
     "name": "distant-learning",
     "path": "/distant-learning",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/distant-learning.vue",
-    "chunkName": "pages/distant-learning",
-    "_name": "_0e876f84"
+    "chunkName": "pages/distant-learning"
   },
   {
     "name": "faq",
     "path": "/faq",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/faq.vue",
-    "chunkName": "pages/faq",
-    "_name": "_40e5fa6c"
+    "chunkName": "pages/faq"
   },
   {
     "name": "gallery-grid",
     "path": "/gallery-grid",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/gallery-grid.vue",
-    "chunkName": "pages/gallery-grid",
-    "_name": "_29541e0a"
+    "chunkName": "pages/gallery-grid"
   },
   {
     "name": "gallery-masonry",
     "path": "/gallery-masonry",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/gallery-masonry.vue",
-    "chunkName": "pages/gallery-masonry",
-    "_name": "_0270a1c0"
+    "chunkName": "pages/gallery-masonry"
   },
   {
     "name": "kindergarten",
     "path": "/kindergarten",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/kindergarten.vue",
-    "chunkName": "pages/kindergarten",
-    "_name": "_5b0b9e60"
+    "chunkName": "pages/kindergarten"
   },
   {
     "name": "kitchen-coach",
     "path": "/kitchen-coach",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/kitchen-coach.vue",
-    "chunkName": "pages/kitchen-coach",
-    "_name": "_7fd27987"
+    "chunkName": "pages/kitchen-coach"
   },
   {
     "name": "landing-demo",
     "path": "/landing-demo",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/landing-demo.vue",
-    "chunkName": "pages/landing-demo",
-    "_name": "_60f657f3"
+    "chunkName": "pages/landing-demo"
   },
   {
     "name": "my-account",
     "path": "/my-account",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/my-account.vue",
-    "chunkName": "pages/my-account",
-    "_name": "_33f49226"
+    "chunkName": "pages/my-account"
   },
   {
     "name": "online-academy",
     "path": "/online-academy",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/online-academy.vue",
-    "chunkName": "pages/online-academy",
-    "_name": "_5671848c"
+    "chunkName": "pages/online-academy"
   },
   {
     "name": "pricing-table",
     "path": "/pricing-table",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/pricing-table.vue",
-    "chunkName": "pages/pricing-table",
-    "_name": "_96ab0746"
+    "chunkName": "pages/pricing-table"
   },
   {
     "name": "privacy-policy",
     "path": "/privacy-policy",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/privacy-policy.vue",
-    "chunkName": "pages/privacy-policy",
-    "_name": "_f9b8509e"
+    "chunkName": "pages/privacy-policy"
   },
   {
     "name": "purchase-guide",
     "path": "/purchase-guide",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/purchase-guide.vue",
-    "chunkName": "pages/purchase-guide",
-    "_name": "_fbeae16c"
+    "chunkName": "pages/purchase-guide"
   },
   {
     "name": "shop",
     "path": "/shop",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/shop/index.vue",
-    "chunkName": "pages/shop/index",
-    "_name": "_3e083d13"
+    "chunkName": "pages/shop/index"
   },
   {
     "name": "terms-condition",
     "path": "/terms-condition",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/terms-condition.vue",
-    "chunkName": "pages/terms-condition",
-    "_name": "_6e47a72b"
+    "chunkName": "pages/terms-condition"
   },
   {
     "name": "university",
     "path": "/university",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/university.vue",
-    "chunkName": "pages/university",
-    "_name": "_610c46b0"
+    "chunkName": "pages/university"
   },
   {
     "name": "yoga-instructor",
     "path": "/yoga-instructor",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/yoga-instructor.vue",
-    "chunkName": "pages/yoga-instructor",
-    "_name": "_0163ef20"
+    "chunkName": "pages/yoga-instructor"
   },
   {
     "name": "blog-blog-details",
     "path": "/blog/blog-details",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/blog/blog-details.vue",
-    "chunkName": "pages/blog/blog-details",
-    "_name": "_f7b61f8c"
+    "chunkName": "pages/blog/blog-details"
   },
   {
     "name": "blog-blog-list",
     "path": "/blog/blog-list",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/blog/blog-list.vue",
-    "chunkName": "pages/blog/blog-list",
-    "_name": "_22a803d6"
+    "chunkName": "pages/blog/blog-list"
   },
   {
     "name": "blog-blog-masonry",
     "path": "/blog/blog-masonry",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/blog/blog-masonry.vue",
-    "chunkName": "pages/blog/blog-masonry",
-    "_name": "_1c2642bd"
+    "chunkName": "pages/blog/blog-masonry"
   },
   {
     "name": "blog-blog-standard",
     "path": "/blog/blog-standard",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/blog/blog-standard.vue",
-    "chunkName": "pages/blog/blog-standard",
-    "_name": "_47277a75"
+    "chunkName": "pages/blog/blog-standard"
   },
   {
     "name": "ConvocatoriasDetalle-detallesssss",
     "path": "/ConvocatoriasDetalle/detallesssss",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/ConvocatoriasDetalle/detallesssss.vue",
-    "chunkName": "pages/ConvocatoriasDetalle/detallesssss",
-    "_name": "_39a56f47"
+    "chunkName": "pages/ConvocatoriasDetalle/detallesssss"
   },
   {
     "name": "course-course-details",
     "path": "/course/course-details",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/course/course-details.vue",
-    "chunkName": "pages/course/course-details",
-    "_name": "_fc87f04c"
+    "chunkName": "pages/course/course-details"
   },
   {
     "name": "course-course-details-2",
     "path": "/course/course-details-2",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/course/course-details-2.vue",
-    "chunkName": "pages/course/course-details-2",
-    "_name": "_05732b02"
+    "chunkName": "pages/course/course-details-2"
   },
   {
     "name": "course-course-details-3",
     "path": "/course/course-details-3",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/course/course-details-3.vue",
-    "chunkName": "pages/course/course-details-3",
-    "_name": "_0556fc00"
+    "chunkName": "pages/course/course-details-3"
   },
   {
     "name": "course-course-five",
     "path": "/course/course-five",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/course/course-five.vue",
-    "chunkName": "pages/course/course-five",
-    "_name": "_c9d5a76c"
+    "chunkName": "pages/course/course-five"
   },
   {
     "name": "course-course-four",
     "path": "/course/course-four",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/course/course-four.vue",
-    "chunkName": "pages/course/course-four",
-    "_name": "_51062e84"
+    "chunkName": "pages/course/course-four"
   },
   {
     "name": "course-course-one",
     "path": "/course/course-one",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/course/course-one.vue",
-    "chunkName": "pages/course/course-one",
-    "_name": "_32ec11fe"
+    "chunkName": "pages/course/course-one"
   },
   {
     "name": "course-course-three",
     "path": "/course/course-three",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/course/course-three.vue",
-    "chunkName": "pages/course/course-three",
-    "_name": "_aa8aa594"
+    "chunkName": "pages/course/course-three"
   },
   {
     "name": "course-course-two",
     "path": "/course/course-two",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/course/course-two.vue",
-    "chunkName": "pages/course/course-two",
-    "_name": "_4b53c2e4"
+    "chunkName": "pages/course/course-two"
   },
   {
     "name": "event-event-details",
     "path": "/event/event-details",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/event/event-details.vue",
-    "chunkName": "pages/event/event-details",
-    "_name": "_36a13ea0"
+    "chunkName": "pages/event/event-details"
   },
   {
     "name": "event-event-grid",
     "path": "/event/event-grid",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/event/event-grid.vue",
-    "chunkName": "pages/event/event-grid",
-    "_name": "_597a9dc8"
+    "chunkName": "pages/event/event-grid"
   },
   {
     "name": "event-event-list",
     "path": "/event/event-list",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/event/event-list.vue",
-    "chunkName": "pages/event/event-list",
-    "_name": "_d28b51c0"
+    "chunkName": "pages/event/event-list"
   },
   {
     "name": "instructor-instructor-one",
     "path": "/instructor/instructor-one",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/instructor/instructor-one.vue",
-    "chunkName": "pages/instructor/instructor-one",
-    "_name": "_a1685684"
+    "chunkName": "pages/instructor/instructor-one"
   },
   {
     "name": "instructor-instructor-profile",
     "path": "/instructor/instructor-profile",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/instructor/instructor-profile.vue",
-    "chunkName": "pages/instructor/instructor-profile",
-    "_name": "_1a8c12fe"
+    "chunkName": "pages/instructor/instructor-profile"
   },
   {
     "name": "instructor-instructor-three",
     "path": "/instructor/instructor-three",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/instructor/instructor-three.vue",
-    "chunkName": "pages/instructor/instructor-three",
-    "_name": "_e3968014"
+    "chunkName": "pages/instructor/instructor-three"
   },
   {
     "name": "instructor-instructor-two",
     "path": "/instructor/instructor-two",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/instructor/instructor-two.vue",
-    "chunkName": "pages/instructor/instructor-two",
-    "_name": "_7098f4b8"
+    "chunkName": "pages/instructor/instructor-two"
   },
   {
     "name": "shop-cart",
     "path": "/shop/cart",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/shop/cart.vue",
-    "chunkName": "pages/shop/cart",
-    "_name": "_146509ef"
+    "chunkName": "pages/shop/cart"
   },
   {
     "name": "shop-checkout",
     "path": "/shop/checkout",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/shop/checkout.vue",
-    "chunkName": "pages/shop/checkout",
-    "_name": "_07216595"
+    "chunkName": "pages/shop/checkout"
   },
   {
     "name": "shop-product-details",
     "path": "/shop/product-details",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/shop/product-details.vue",
-    "chunkName": "pages/shop/product-details",
-    "_name": "_c3a38136"
+    "chunkName": "pages/shop/product-details"
   },
   {
     "name": "shop-wishlist",
     "path": "/shop/wishlist",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/shop/wishlist.vue",
-    "chunkName": "pages/shop/wishlist",
-    "_name": "_c35912d8"
+    "chunkName": "pages/shop/wishlist"
   },
   {
     "name": "index",
     "path": "/",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/index.vue",
-    "chunkName": "pages/index",
-    "_name": "_50b362a8"
+    "chunkName": "pages/index"
   },
   {
     "name": "Convocatorias-categoria",
     "path": "/Convocatorias/:categoria?",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/Convocatorias/_categoria.vue",
-    "chunkName": "pages/Convocatorias/_categoria",
-    "_name": "_8c915100"
+    "chunkName": "pages/Convocatorias/_categoria"
   },
   {
     "name": "ConvocatoriasDetalle-detalle",
     "path": "/ConvocatoriasDetalle/:detalle?",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/ConvocatoriasDetalle/_detalle.vue",
-    "chunkName": "pages/ConvocatoriasDetalle/_detalle",
-    "_name": "_f44f033a"
+    "chunkName": "pages/ConvocatoriasDetalle/_detalle"
   },
   {
     "name": "ConvocatoriasLista-categoria",
     "path": "/ConvocatoriasLista/:categoria?",
     "component": "/home/crismas/Documents/SERVIDOR UPEA/upea oficial/edublink/pages/ConvocatoriasLista/_categoria.vue",
-    "chunkName": "pages/ConvocatoriasLista/_categoria",
-    "_name": "_09e85b5a"
+    "chunkName": "pages/ConvocatoriasLista/_categoria"
   }
 ]
